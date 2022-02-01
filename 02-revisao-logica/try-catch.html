@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="sum.js"></script>
+
+    <script>
+        // console.log(sum(3, 5))
+        // alert(sum(3, "8"))
+        // document.write(sum(4, 2))
+
+        let soma = ""
+        try{ //tente fazer
+            soma = sum(3, 2)
+        } catch(erro){ // caso nao der passa pro bloco catch
+            alert("Ocorreu um erro")
+            console.log(erro.message)
+        } finally{ // Vai ser executado sempre
+            console.log("Bloco Finaly")
+        }
+
+        console.log(soma)
+        console.log("Fim Do programa")
+    </script>
+</body>
+</html>

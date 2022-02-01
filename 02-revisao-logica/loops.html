@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script>
+        let numero = prompt("Digita um numero");
+
+        let i = 0
+        while(i <= 9){
+            i++
+            if(i === 5){
+                continue
+            }
+            document.write(`${numero} x ${i} = ${(numero * i)} <br>`)
+        }
+        document.write("Saiu do loop While <br>")
+
+        i = 0
+        do{
+            if(i > 9){
+                alert("Indice maior que 10")
+                break
+            }
+            document.write(`${numero} x ${i} = ${(numero * i)} <br>`)
+            i++
+        } while(i <= 9)
+        document.write("Saiu do loop Do While <br> ")
+
+        
+
+        for(let n = 0; n <= 9; n++){
+            if( n === 5){
+                continue
+            }
+            document.write(`${numero} x ${n} = ${(numero * n)} <br>`)
+        }
+        document.write("Saiu do loop for <br>")
+    </script>
+</body>
+</html>
