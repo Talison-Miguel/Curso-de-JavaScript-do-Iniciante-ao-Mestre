@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Media</title>
+    <style>
+        .calculadora{
+            background-color: gray;
+            border: 1px solid black;
+            margin: 50px;
+            height: 400px;
+            width: 184px;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .n-digitados{
+            background-color: aquamarine;
+            width: 180px;
+            height: 200px;
+            display: flex;
+            display: block;
+            border: 1px solid black;
+        }
+       
+        .titulo{
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 8px 0;
+        }
+        
+        .input-numeros-peso,.input-numeros-altura{
+            width: 180px;
+            height: 26px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .btn{
+            width: 180px;
+            margin-top: 20px;
+            height: 26px;
+            box-sizing: border-box;
+            cursor: pointer;
+            background-color: rgb(211, 240, 216);
+            border: none;
+            transition: .5s;
+        }
+
+        .btn:hover{
+            border: 2px solid rgb(49, 243, 82);
+        }
+
+
+        .media-div{
+            background-color: rgb(253, 255, 254);
+            width: 180px;
+            height: 194px;
+            border: 1px solid black;
+        }
+
+        .resultado{
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 30px;
+        }
+
+        .container2{
+            border: 2px solid black;
+
+        }
+
+        .numDigitados{
+            width: 280px;
+            height: 394px;
+            background-color: gray;
+            
+        }
+
+        .result{
+            margin: 0;
+        }
+
+        .numeros{
+            text-align: center;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        .btn-class{
+            position: absolute;
+            /* top: 92%; */
+            width: 280px;
+        }
+
+        .classificar{
+            display: none;
+        }
+
+        table{
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>    
+    <div class="calculadora">
+        <div class="container1">
+            <div class="n-digitados">
+                <h1 class="titulo">Digite Seu Peso E Sua Altura</h1>
+                <input type="number" class="input-numeros-peso validacao" placeholder="Peso">
+                <input type="number" class="input-numeros-altura validacao" placeholder="Altura">
+            </div>
+            <div class="media-div">
+                <button class="btn calcResultado">Calcular imc</button>
+                <div class="resultado"></div>
+            </div>
+        </div>
+        <div class="container2">
+            <div class="numDigitados">
+                <h1 class="titulo result">Classificação</h1>
+                <div class="classificar">
+                    <table class="lista">
+                        <tr class="item">
+                            <th>Muito abaixo do peso</th><td>16 a 16,9</td>
+                        </tr>
+                        <tr class="item">
+                            <th>Abaixo do peso</th><td>17 a 18,4</td>
+                        </tr>
+                        <tr class="item">
+                            <th>Peso normal</th><td>18,5 a 24,9</td>
+                        </tr>
+                        <tr class="item">
+                            <th>Acima do peso</th><td>25 a 29,9</td>
+                        </tr>
+                        <tr class="item">
+                            <th>Obesidade Grau I</th><td>30 a 34,9</td>
+                        </tr>
+                        <tr class="item">
+                            <th>Obesidade Grau II</th><td>35 a 40</td>
+                        </tr>
+                        <tr class="item">
+                            <th>Obesidade Grau III</th><td>maior que 40</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <button class="btn btn-class">Classificar</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- JavaScript -->
+
+    <!-- // Requistos
+    // IMC = peso / altura *2
+    //deve retornar um unico numero
+    // Deve gerar um erro se receber um parametro nao numero
+    // Deve retornar erro se caso n receber parametro
+
+    // Criar um funçao para classificar o imc
+    // deve receber um numero(o imc)
+    // deve retornar uma string
+    // Deve retornar erro caso nao receba nenHum parametro -->
+    <script>
+        "use strict"
+        let numeroPeso     = document.querySelector(".input-numeros-peso")
+        let numerosAltura  = document.querySelector(".input-numeros-altura")
+        let resultadoIMC   = document.querySelector(".resultado")
+        let btnIMC         = document.querySelector(".calcResultado") 
+        let validacao      = document.querySelector(".validacao")
+        let bntClass       = document.querySelector(".btn-class")
+        let classificarImc    = document.querySelector(".classificar")
+        let itemlist       = document.querySelectorAll(".item")
+
+        function calcNum(){
+            let peso   = numeroPeso.value
+            let altura = numerosAltura.value 
+            let imc  = peso / (altura ** 2)            
+
+            if(validacao.value === ""){
+                resultadoIMC.innerHTML = "Digite um Número"
+            } else{
+                console.log(`${peso} / ${altura} * 2 = ${imc.toFixed(2)}`)
+                resultadoIMC.innerHTML = imc.toFixed(2)
+            } 
+
+            if(imc < 16.9){
+                itemlist[0].style.background = "red"
+            } else if(imc <= 18.4){
+                itemlist[1].style.background = "red"
+            } else if(imc <= 24.9){
+                itemlist[2].style.background = "green"
+            }else if(imc <= 29.9){
+                itemlist[3].style.background = "red"
+            }else if(imc <= 34.9){
+                itemlist[4].style.background = "red"
+            }else if(imc <= 40){
+                itemlist[5].style.background = "red"
+            }else if(imc >= 40){
+                itemlist[6].style.background = "red"
+            }        
+        }
+
+        
+        function ClassificarImc(){           
+            classificarImc.style.display = "block"
+            
+            console.log(itemlist)
+        }
+        
+        btnIMC.addEventListener("click", calcNum)
+        bntClass.addEventListener("click", ClassificarImc)
+
+    </script>
+</body>
+</html>
+

@@ -9,3 +9,5 @@ function somar(){
 
 console.log(somar(1, 2, 3))
 console.log(somar(1, 2, 4, 5 ,6))
+
+console.log(somar.name)

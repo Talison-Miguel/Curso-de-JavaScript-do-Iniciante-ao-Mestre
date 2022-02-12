@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Media</title>
+    <style>
+        .calculadora{
+            background-color: gray;
+            border: 1px solid black;
+            margin: 50px;
+            height: 400px;
+            width: 184px;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .n-digitados{
+            background-color: aquamarine;
+            width: 180px;
+            height: 200px;
+            display: flex;
+            display: block;
+            border: 1px solid black;
+        }
+       
+        .titulo{
+            text-align: center;
+            font-size: 2rem;
+            margin: 6px 0;
+        }
+        
+        .input-numeros{
+            width: 180px;
+            height: 26px;
+            box-sizing: border-box;
+        }
+
+        .btn{
+            width: 180px;
+            margin-top: 20px;
+            height: 26px;
+            box-sizing: border-box;
+            cursor: pointer;
+            background-color: rgb(211, 240, 216);
+            border: none;
+            transition: .5s;
+        }
+
+        .btn:hover{
+            border: 2px solid rgb(49, 243, 82);
+        }
+
+
+        .media-div{
+            background-color: rgb(253, 255, 254);
+            width: 180px;
+            height: 194px;
+            border: 1px solid black;
+        }
+
+        .resultado{
+            text-align: center;
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+
+        .container2{
+            border: 2px solid black;
+
+        }
+
+        .numDigitados{
+            width: 180px;
+            height: 394px;
+            background-color: gray;
+            
+        }
+
+        .result{
+            margin: 0;
+        }
+
+        .numeros{
+            text-align: center;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- //Requisitos
+    //Pode recerber um ou mais valores numericos
+    //deve retornar um unico numero
+    //deve gerar um erro se receber um  parametro nao numero
+    //deve retornar zero caso nao receba nenhum parametro -->
+    
+    <div class="calculadora">
+        <div class="container1">
+            <div class="n-digitados">
+                <h1 class="titulo">Digite um numero</h1>
+                <input type="number" class="input-numeros">
+                <button class="btn addNumero">Adicionar Numero</button>
+            </div>
+            <div class="media-div">
+                <button class="btn calcResultado">Media</button>
+                <div class="resultado"></div>
+            </div>
+        </div>
+        <div class="container2">
+            <div class="numDigitados">
+                <h1 class="titulo result">Numeros Digitados</h1>
+                <div class="numeros"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- JavaScript -->
+    <script>
+        "use strict"
+        let numerosDigitados = document.querySelector(".input-numeros")
+        let resultadoMedia   = document.querySelector(".resultado")
+        let bntAdd           = document.querySelector(".addNumero")
+        let btnMedia         = document.querySelector(".calcResultado") 
+        let numerosEscritos  = document.querySelector(".numeros")
+        let arrayNum         = []
+        let total = 0
+
+        function addNum(){           
+            arrayNum.push(Number(numerosDigitados.value))
+            console.log(arrayNum)
+            resultadoMedia.innerHTML = ""
+            numerosEscritos.innerHTML = arrayNum
+            return arrayNum
+        }
+
+        function calcNum(){
+            for(let i = 0; i < arrayNum.length; i++){
+                total += arrayNum[i]    
+            }
+
+            total = total / arrayNum.length
+
+            if(numerosDigitados.value === "" || total.value === 0){
+                resultadoMedia.innerHTML = 0
+            } else{
+                resultadoMedia.innerHTML = total.toFixed(1) 
+            }
+
+
+            //reset dos valores
+            numerosDigitados.innerHTML = ""
+            arrayNum = []
+            total = 0
+            console.log("reset")
+        }
+
+
+        bntAdd.addEventListener("click", addNum)
+        btnMedia.addEventListener("click", calcNum)
+
+    </script>
+</body>
+</html>
+
