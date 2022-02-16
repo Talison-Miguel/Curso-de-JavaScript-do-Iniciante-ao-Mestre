@@ -174,47 +174,62 @@
         let btnIMC         = document.querySelector(".calcResultado") 
         let validacao      = document.querySelector(".validacao")
         let bntClass       = document.querySelector(".btn-class")
-        let classificarImc    = document.querySelector(".classificar")
+        let classifica = document.querySelector(".classificar")
         let itemlist       = document.querySelectorAll(".item")
 
-        function calcNum(){
+        function defineCor (item, cor) {
+            itemlist[item].style.background = cor
+        }
+        
+        function limpaCor () {
+            // for(let i = 0; i >= itemlist.length; i++){
+            //     itemlist[i].style.background = 'transparent'
+            // }
+            itemlist.forEach(itemlist => itemlist.style.background = 'transparent')
+        }
+
+        let imc;
+        function calcNum() {
             let peso   = numeroPeso.value
             let altura = numerosAltura.value 
-            let imc  = peso / (altura ** 2)            
+            imc        = peso / (altura ** 2)      
 
-            if(validacao.value === ""){
+            if (validacao.value === "") {
                 resultadoIMC.innerHTML = "Digite um Número"
             } else{
                 console.log(`${peso} / ${altura} * 2 = ${imc.toFixed(2)}`)
                 resultadoIMC.innerHTML = imc.toFixed(2)
             } 
-
-            if(imc < 16.9){
-                itemlist[0].style.background = "red"
-            } else if(imc <= 18.4){
-                itemlist[1].style.background = "red"
-            } else if(imc <= 24.9){
-                itemlist[2].style.background = "green"
-            }else if(imc <= 29.9){
-                itemlist[3].style.background = "red"
-            }else if(imc <= 34.9){
-                itemlist[4].style.background = "red"
-            }else if(imc <= 40){
-                itemlist[5].style.background = "red"
-            }else if(imc >= 40){
-                itemlist[6].style.background = "red"
+        }
+        
+        function selecionaRespost () {           
+            classifica.style.display = "block"
+            console.log(itemlist)
+            
+            if (imc < 16.9) {
+                defineCor(0, 'red')
+            } else if (imc <= 18.4){
+                defineCor(1, 'red')
+            } else if (imc <= 24.9){
+                defineCor(2, 'green')
+            } else if (imc <= 29.9){
+                defineCor(3, 'red')
+            } else if (imc <= 34.9){
+                defineCor(4, 'red')
+            } else if (imc <= 40){
+                defineCor(5, 'red')
+            } else if (imc >= 40){
+                defineCor(6, 'red')
             }        
         }
 
-        
-        function ClassificarImc(){           
-            classificarImc.style.display = "block"
-            
-            console.log(itemlist)
+        function classificarImc () {
+            limpaCor()
+            selecionaRespost()
         }
         
         btnIMC.addEventListener("click", calcNum)
-        bntClass.addEventListener("click", ClassificarImc)
+        bntClass.addEventListener("click", classificarImc)
 
     </script>
 </body>

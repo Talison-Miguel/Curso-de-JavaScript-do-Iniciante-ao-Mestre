@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title">Curso JavaScriptCompleto 2018</h1>
+
+    <main class="cmain" id="idmain">
+        <h2>subtitulo</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </main>
+
+    <form class="formulario" action="#">
+        <input type="text" id="txtNome" placeholder="nome"></input><br><br>
+        <input type="text" id="txtEmail" placeholder="email"></input><br><br>
+       
+        <input type="checkbox" class="contrato">
+        <label for="contrato">Li e aceito o seguinte contrato</label><br><br>
+        <textarea name="" id="textContrato" cols="30" rows="10" readonly>Esse contrato nos da direito a...</textarea>
+        <input type="submit" value="cadastrar" class="cadastre">
+    </form>
+
+    <script>
+        
+        const checkado = document.querySelector('.contrato')
+        const cadastrar = document.querySelector('.cadastre')
+        const paragrafo    = document.createElement("p")
+        const form         = document.querySelector(".formulario")
+        const textContrato = document.querySelector("#textContrato")
+        cadastrar.disabled = true
+        
+
+
+        function limpaCadastro(){
+            paragrafo.style.display = "none"
+        }
+
+        function checkarContrato () { 
+            if(checkado.checked === true) {
+                cadastrar.disabled = false
+                console.log("cadastrar ativado")
+            } else {
+                cadastrar.disabled = true
+                console.log("cadastrar desativado")
+                limpaCadastro()
+            }
+            console.log("click")
+        }
+
+        function cadastrado(){
+            paragrafo.style.display = "block"
+            paragrafo.innerHTML = "Cadastro Completo"
+            paragrafo.style.background = "green"
+            paragrafo.style.fontSize   = "24px"
+            paragrafo.style.width      = "300px"
+            paragrafo.style.textAlign  = "center"
+            form.appendChild(paragrafo)
+
+            textContrato.disabled = true
+        }
+
+        
+        cadastrar.onclick = cadastrado
+        checkado.onchange = checkarContrato
+
+    </script>
+</body>
+</html>
