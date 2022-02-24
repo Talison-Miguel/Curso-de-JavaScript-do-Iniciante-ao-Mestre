@@ -24,11 +24,11 @@ console.log(arr2)
 
 
 //Verifica      _ os Elementos de um array
-//arr.every     _ se todos os items forem true dentro da array
-//arr.some      _ se tem pelo menos um item true dentro da array
+//arr.every     _ retorna true se todos os items forem true dentro da array
+//arr.some      _ retorna true se tem pelo menos um item true dentro da array
 
 //arr.filter    _ retorna uma nova array filtrada
 
 //arr.forEach() _ um for pra array, passa pelo array todo 
 
-//arra.map      _ devolve um novo Array como resultado
+//arra.map()      _ devolve um novo Array como resultado

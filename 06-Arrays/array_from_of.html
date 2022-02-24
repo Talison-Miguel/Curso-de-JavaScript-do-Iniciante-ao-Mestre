@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic omnis non soluta, ea, quibusdam rerum numquam facere dolorem quod molestiae corporis excepturi. Ipsam, veniam reprehenderit id cum non voluptatibus perferendis!</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic omnis non soluta, ea, quibusdam rerum numquam facere dolorem quod molestiae corporis excepturi. Ipsam, veniam reprehenderit id cum non voluptatibus perferendis!</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic omnis non soluta, ea, quibusdam rerum numquam facere dolorem quod molestiae corporis excepturi. Ipsam, veniam reprehenderit id cum non voluptatibus perferendis!</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic omnis non soluta, ea, quibusdam rerum numquam facere dolorem quod molestiae corporis excepturi. Ipsam, veniam reprehenderit id cum non voluptatibus perferendis!</p>
+
+
+    <script>
+        const arr1 = new Array(3)
+        console.log(arr1)
+        console.log(arr1.length)
+
+        const arr3 =  Array.of(3)
+        console.log(arr3)
+        console.log(arr3.length)
+
+        const arr2 = Array.from(arr1)
+        arr2.push(4, 5)
+        // console.log(arr2)
+
+        let paragrafos = document.querySelectorAll('p')
+        console.log(paragrafos)
+        // paragrafos.forEach( function(p, i){
+        //     p.textContent = `${++i} = ${p.textContent}`
+        // })
+
+        paragrafos = Array.from(paragrafos)
+        //ta criando um array, a partir dos elementos dentro de paragrafos
+        paragrafos.map( function(p, i){
+            p.textContent = `${++i} = ${p.textContent}`
+        })
+
+
+        //O método Array.from() cria uma nova instância de um Array quando for passado um array-like ou um iterable object como argumento
+        //Array.from(obj) transforma um objeto em array 
+        //O método Array.of() cria um nova instância de Array com um número variável de argumentos, independentemente do número ou do tipo dos argumentos.
+    </script>
+</body>
+</html>
