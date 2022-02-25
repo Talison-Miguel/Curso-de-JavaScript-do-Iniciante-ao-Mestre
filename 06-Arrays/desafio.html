@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio</title>
+    <style>
+        .desafio{
+            border: 2px solid black;
+            width: 300px;
+            height: 500px;
+        }
+
+        h1{
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid black;
+        }
+
+        .title2{
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bolder;
+        }
+
+        input{
+            display: block;
+            margin: 0 auto;
+            height: 24px;
+            text-align: center;
+        }
+
+        .btn{
+            width: 100px;
+            height: 22px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            border: none;
+            background-color: gray;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn:hover{
+            background-color: white;
+            color: gray;
+            border: 1px solid gray;
+        }
+        
+        .divNum{
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .divNum{
+            height: 40px;
+        }
+
+        .soma{
+            height: 80px;
+            text-align: center;
+        }
+
+        .media{
+            height: 80px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="desafio">
+        <h1>Soma e Média dos numeros</h1>
+        <label for="num" class="title2">Digite os numeros</label>
+        <input type="number" class="numeros">
+        <button class="btn btn-click">Adicionar</button>
+        <div class="divNum"></div>
+        <div class="soma">Soma</div>
+        <div class="media">Media</div>
+        <button class="btn btn-calc">Calcular</button>
+        <button class="btn btn-limpar">Limpar</button>
+    </div>
+    <script>
+        //criar dus funçoes que recebem 1 ou mais parametros
+        //a funçao sum retorna a  soma
+        //a funçao evarege retorna a media media
+        //usar as coisas novas
+
+        let input = document.querySelector('.numeros')
+        let numerosDigitados = document.querySelector('.divNum')
+        let divsoma          = document.querySelector('.soma')
+        let divmedia         = document.querySelector('.media')
+        const btnCLick       = document.querySelector('.btn-click')
+        const btnCalc        = document.querySelector('.btn-calc')
+        const btnLimpar      = document.querySelector('.btn-limpar')
+        let arrNum = [] 
+        let soma = 0
+        let soma2 = 0
+
+
+        function limpar(){
+            arrNum = []
+            numerosDigitados.innerHTML = ""
+            divsoma.innerHTML             = "Soma"
+            divmedia.innerHTML            = "Média"
+            input.value         = ""
+            console.log('---', arrNum ,'---')
+        }
+
+        function adicionarNum(){
+            arrNum.push(input.value)
+            console.log(arrNum)
+
+            numerosDigitados.innerHTML = arrNum
+        }
+
+        function sum(){
+            for (n in arrNum) {
+                soma += Number(arrNum[n])
+            }
+            // console.log(soma)
+            divsoma.innerHTML = `Soma = ${soma}`
+        }
+
+        function evarege(){
+            for (n in arrNum) {
+                soma2 += Number(arrNum[n])
+            }
+            let media = soma2 / (arrNum.length)
+            console.log(soma2)
+            console.log(media)
+            divmedia.innerHTML = `Média = ${media}`
+        }
+
+        btnCLick.addEventListener("click", adicionarNum)
+        btnCalc.addEventListener("click", sum)
+        btnCalc.addEventListener("click", evarege)
+        btnLimpar.addEventListener("click", limpar)
+
+
+    </script>
+</body>
+</html>
+
