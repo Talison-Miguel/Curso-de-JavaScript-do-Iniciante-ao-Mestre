@@ -5,14 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .container2{
+            background-color: #ccc;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Eventos</h1>
-    <button id="btn1">botao 1</button>
-    <button id="btn2" onclick="console.log('click com atributo onclick')">botao 2</button>
-    <button id="btn3">botao 3</button>
+    <div class="container">
+        <button id="btn1">botao 1</button>
+        <button id="btn2" onclick="console.log('click com atributo onclick')">botao 2</button>
+        <button id="btn3">botao 3</button>
+    </div>
+    <hr>
 
-    
+    <h1>Delegaçao De Eventos</h1>
+    <div class="container2">
+        <button>Botão 1</button>
+        <button>Botão 2</button>
+        <button>Botão 3</button>
+    </div>
+
     <script>
         const btn1 = document.querySelector('#btn1')
         const btn2 = document.querySelector('#btn2')
@@ -37,6 +53,52 @@
             console.log('click funcao anonima')
         })
 
+
+        //Propagaçao de evento
+        //o terceiro parametro troca a fase que vai disparar o evento, do documento ate o elemento(false) e ao contrario true
+        document.addEventListener('click', function () {
+            console.log('clickou no document')
+        }, false)
+
+        btn3.addEventListener('click', function (event) {
+            //o parametro passado mostra o evento
+            //parametro.evento(), faz coisas
+            console.log(event)
+            event.stopPropagation()
+            console.log('clickou no btn3')
+        }, false)
+
+
+        const container = document.querySelector('.container')
+        container.addEventListener('click', function () {
+            console.log('clickou no container')
+        }, true)
+
+
+
+
+        //Delegaçao De Eventos
+        const container2 = document.querySelector('.container2')
+        const btns       = document.querySelectorAll('.container2 button')
+        
+        console.log(btns);
+        // [...btns].forEach( btn => {
+        //     btn.addEventListener('click', function (evento) {
+        //         evento.stopPropagation()
+        //         //para o evento de click global nao funcionar nesses botoes
+        //         console.log(evento.target)
+        //     })
+        // })
+
+        container2.addEventListener('click', function (evento) {
+            evento.stopPropagation()
+            // console.log(evento.target.nodeName)
+            if(evento.target.nodeName === 'BUTTON') {
+                console.log(evento.target)
+            }
+        })
+        
+        
     </script>
 </body>
 </html>
