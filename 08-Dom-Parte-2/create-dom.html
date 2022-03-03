@@ -5,9 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .container2 {
+            background: #ccc;
+            padding: 15px;
+        }
+
+        .container2 p {
+            border: 1px solid red;
+            padding: 10px;
+            margin: 15px;
+        }
+    </style>
 </head>
 <body>
     <h1>Teste Dom</h1>
+
+    <!-- beforebegin -->
+    <div class="container2">
+        <!-- afterbegin -->
+        <p>paragrafo 1</p>
+        <p>paragrafo 2</p>
+        <p>paragrafo 3</p>
+        <!-- beforeend -->
+    </div>
+    <!-- afterend -->
 
     <div class="container">
         <p>teste 1</p>
@@ -32,11 +55,89 @@
     </div>
 
     <script>
-        const title = document.createElement('h1')
-        const atibuto = document.createAttribute('id')
+        //atributos _ classes, ids, etc
+        //elemento  _ h1, p, section, etc
+        //--criando um h1, colocando um id, e depois colocando o texto no h1
+        const title    = document.createElement('h1')
+        const atributo = document.createAttribute('id')
+        atributo.value = 'title1'
+        title.setAttributeNode(atributo)
+
+        title.setAttribute('title', 'title inserido dinamicamente')
+        title.setAttribute('style', 'color: red;')
+
+        const text = document.createTextNode('Criar nós no DOM')
+        title.appendChild(text)
+
+        title.textContent = 'texto inserido com textContent'
+
         console.log(title)
 
+        document.querySelector('.container').appendChild(title)
+        // document.querySelector('.container').prepend('texto novo')
+        
+        const title2 = document.createElement('h1')
+        title2.textContent = '------- Titulo 2 -------'
+        const list = document.querySelector('ul')
+        document.querySelector('.container').insertBefore(title2, list)
 
+        const container = document.querySelector('.container')
+        container.insertBefore(title2, container.firstChild)
+
+
+        let sublevel = document.querySelector('ul ul')
+        const h2 = document.querySelector('h2')
+        sublevel = sublevel.cloneNode(true)
+        container.insertBefore(sublevel, h2.nextElementSibling)
+
+
+        const segundoParagrafo = container.firstElementChild.nextElementSibling.nextElementSibling
+        console.log(container.firstElementChild)
+        console.log(segundoParagrafo)
+
+        const span = document.createElement('span')
+        span.textContent = 'span dinamica'
+        segundoParagrafo.before(span)
+
+
+
+        const container2 = document.querySelector('.container2')
+        //beforebegin, afterbegin, beforeend, afterend
+        container2.insertAdjacentHTML('beforebegin', '<b> texto inserido </b>')
+        container2.insertAdjacentHTML('afterbegin', '<b> texto inserido 2</b>')
+        container2.insertAdjacentHTML('beforeend', '<b> texto inserido 3 </b>')
+        container2.insertAdjacentHTML('afterend', '<b> texto inserido 4</b>')
+
+
+        container2.insertAdjacentText('afterbegin', 'texto qualquer 5')
+      
+      
+        const em = document.createElement('em')
+        em.textContent = 'texto com infase'
+        container2.insertAdjacentElement('beforeend', em)
+
+
+
+        // list.remove()
+        // parentNode.removeChild(list)
+        list.parentElement.removeChild(list)
+
+        const parent = document.body
+        const novo   = container.querySelector('h1').cloneNode(true)
+        const velho  = document.querySelector('h1')
+        parent.replaceChild(novo, velho)
+
+
+        //AppendChild _ Adiciona depois do ultimo filho
+        //prepend _ Adiciona antes do primeiro filho
+        //append  _ Adiciona depois do ultimo filho
+        //insertBefore _ insere antes de tal filho (coisa pra add, filho)
+        //cloneNode(true) _ clona tal coisa com todos os filhos pra inserir novamente
+        //after/before _ antes e depois para selecionar
+        //insertAdjacentHTML('posiçao', texto inserido)
+        //remove() _ remove tal coisa, so nao funciona no ie11
+        //parentElement.removeChild _ remove tal coisa
+        //parent.replaceChild(novo, velho) _ coloca no mesmo lugar do antigo elemento
     </script>
 </body>
 </html>
