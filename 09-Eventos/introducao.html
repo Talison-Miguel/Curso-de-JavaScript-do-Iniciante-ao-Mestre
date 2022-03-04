@@ -56,8 +56,11 @@
 
         //Propagaçao de evento
         //o terceiro parametro troca a fase que vai disparar o evento, do documento ate o elemento(false) e ao contrario true
-        document.addEventListener('click', function () {
+        document.addEventListener('click', function (e) {
             console.log('clickou no document')
+            console.log(e.target)
+            console.log(e.currentTarget)
+            console.log(this)
         }, false)
 
         btn3.addEventListener('click', function (event) {
@@ -89,12 +92,16 @@
         //         console.log(evento.target)
         //     })
         // })
-
-        container2.addEventListener('click', function (evento) {
-            evento.stopPropagation()
-            // console.log(evento.target.nodeName)
+        
+        console.log('this-----', this)
+        container2.addEventListener('click', (evento) => {
+            // evento.stopPropagation()
+            console.log('clickou no container 2')
+            console.log(evento.target)
+            console.log(evento.currentTarget)
+            console.log(this)
             if(evento.target.nodeName === 'BUTTON') {
-                console.log(evento.target)
+                // console.log(evento.target)
             }
         })
         
