@@ -25,32 +25,47 @@ btn.addEventListener('click', () => {
         feedbackMessage.style.transform = 'translateY(calc(-2rem - 100%))'
     }
 
-    //Fecha feedbackMessage caso valores estiverem incompletos
+
+    //Fecha feedbackMessage clickando, caso valores estiverem incompletos
     closeMenssage.addEventListener('click', () => {
         feedbackMessage.style.transform = 'translateY(calc(-2rem - 100%))'
     })
+
+    
+    //Fecha feedbackMessage com o esc, caso valores estiverem incompletos
+    document.addEventListener('keyup', () => {
+    const tecla = event.keyCode;
+    if (tecla === 27) {
+        feedbackMessage.style.transform = 'translateY(calc(-2rem - 100%))'
+    }
+})
 });
 
 
 
 //Altera o numero de quantidade de caracteres
-let numCont = 255
 const contador = document.querySelector('#contador span')
-function digitandoLocal(e){
+txtDescricao.addEventListener('keyup', () => {
     const tecla = event.keyCode;
+    let numerosCaracteres = txtDescricao.value.length
 
-
-    if(tecla === 8){
-        console.log('tecla delete')
-        numCont++
-        contador.textContent = numCont
+    if (numerosCaracteres > 255) {
+        contador.textContent = numerosCaracteres
     } else {
-        numCont--
-        contador.textContent = numCont
+        if (tecla === 8) {
+            console.log('tecla para apagar')
+            contador.textContent = 255 - numerosCaracteres
+        } else {
+            contador.textContent = 255 - numerosCaracteres
+        }
     }
-};
+})
 
-txtDescricao.addEventListener('keyup', digitandoLocal)
+
+
+
+
+
 
 // pegar a tecla
 // function pegaTecla(){
