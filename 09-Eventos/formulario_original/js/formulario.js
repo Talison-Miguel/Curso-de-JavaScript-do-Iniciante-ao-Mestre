@@ -33,13 +33,28 @@ btn.addEventListener('click', () => {
 
 
 
+//Altera o numero de quantidade de caracteres
+let numCont = 255
 const contador = document.querySelector('#contador span')
-function digitandoLocal(){
+function digitandoLocal(e){
+    const tecla = event.keyCode;
 
 
-
-
-    console.log('click')
+    if(tecla === 8){
+        console.log('tecla delete')
+        numCont++
+        contador.textContent = numCont
+    } else {
+        numCont--
+        contador.textContent = numCont
+    }
 };
 
-  txtDescricao.addEventListener('keyup', digitandoLocal)
+txtDescricao.addEventListener('keyup', digitandoLocal)
+
+// pegar a tecla
+// function pegaTecla(){
+//     var tecla = event.keyCode;
+//     console.log(tecla);
+// }
+// document.addEventListener('keydown', pegaTecla)
