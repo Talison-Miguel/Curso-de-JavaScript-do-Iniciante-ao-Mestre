@@ -5,19 +5,49 @@
     const btn = document.getElementById("btn")
     const formCadastro = document.querySelector('.formCadastro')
     
-    // btn.addEventListener("click", function (e) {
 
-    // })
-
+    //submit, quando enviar as informaçoes pro servidor
     formCadastro.addEventListener('submit', function (e) {
         console.log(txtTitulo.value)
         if (!txtTitulo.value) {
-            showFeedback("preencha todos os campos")
+            showErrosMessage("preencha todos os campos", function () {
+                txtTitulo.focus()
+            })
             e.preventDefault()
             txtTitulo.focus()
         }
     })
-    //submit, quando enviar as informaçoes pro servidor
+
+
+    const feedbackMessage = document.querySelector('#feedbackMessage')
+    const feedbackMessageCloseBtn = feedbackMessage.getElementsByTagName('button')[0]
+    
+    function showErrosMessage (msg, cb) {
+        // alert(msg)
+        // feedbackMessage.setAttribute('class', 'show')
+        feedbackMessage.classList.add('show')
+        feedbackMessage.getElementsByTagName('p')[0].textContent = msg
+
+        function hideErrorMessage () {
+            console.log('clicado close')
+            feedbackMessage.classList.remove('show')
+            //O classList manipula classes de varios modos
+
+            //por criar o evento dentro da funçao, sempre ta criando um evento, ai para isso precisa remover o evento com o removeEventListener()
+            feedbackMessageCloseBtn.removeEventListener('click', hideErrorMessage)
+        
+            
+            if (typeof cb === 'function') {
+                cb()
+            }
+        }
+
+        feedbackMessageCloseBtn.addEventListener('click', hideErrorMessage)
+
+
+    
+    }
+
 
 
 

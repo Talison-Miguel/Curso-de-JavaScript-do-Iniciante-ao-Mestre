@@ -63,7 +63,7 @@ input[type="text"] {
     
 }
 
-input[type="submit"] {
+#btn {
     border: none;
     background-color: rgb(181, 181, 204);
     padding: .5rem 2.5rem;
@@ -74,7 +74,7 @@ input[type="submit"] {
     font-size: 1.25em;
 }
 
-input[type="submit"]:hover {
+#btn:hover {
     background-color: rgb(223, 223, 247);
 }
 

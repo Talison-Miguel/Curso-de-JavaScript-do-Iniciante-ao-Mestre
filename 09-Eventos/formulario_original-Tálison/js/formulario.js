@@ -1,52 +1,66 @@
 'use strict'
 
-const formulario      = document.querySelector('.formCadastro')
-const btn             = document.querySelector('#btn')
-const checkbox        = document.querySelector('#chkAceito')
-const txtTitulo       = document.querySelector('#txtTitulo')
-const txtDescricao    = document.querySelector('#txtDescricao')
-const feedbackMessage = document.querySelector('#feedbackMessage')
-const closeMenssage   = document.querySelector('.fa-close')
-const contarCaracteres        = document.querySelector('#contador')
-btn.disabled = true
+const formulario       = document.querySelector('.formCadastro')
+const btn              = document.querySelector('#btn')
+const checkbox         = document.querySelector('#chkAceito')
+const wrapCheckboxes   = document.querySelector('#wrap-checkboxes')
+const txtTitulo        = document.querySelector('#txtTitulo')
+const txtDescricao     = document.querySelector('#txtDescricao')
+const feedbackMessage  = document.querySelector('#feedbackMessage')
+const contarCaracteres = document.querySelector('#contador')
+const closeMenssage    = feedbackMessage.getElementsByTagName('button')[0]
+btn.disabled           = true
 
 
-//Habilitando e desabilitando o botao
-checkbox.addEventListener('click', () => {
-    if (checkbox.checked === true) {
-        btn.disabled = false
-    } else {
-        btn.disabled = true
-    }
-});
+wrapCheckboxes.addEventListener('click', event => {
+    const target       = event.target
+    const localName    = event.target.localName
+
+    //Se nao for input vai sair fora
+    if (localName !== 'input') return
+
+    btn.disabled = (target.checked === true)
+        ? false
+        : true
+    ;
+})
+
 
 
 //Envia o formulario, validando ele, caso estiver incompleto aparece o feedbackMessage 
 //submit, quando enviar as informaçoes pro servidor
-formulario.addEventListener('submit', () => {
+//preventDefault() _ cancela o envio do formulario
+formulario.addEventListener('submit', event => {
+    //impede que o evento occora, no caso o envio do formulario
+    event.preventDefault()
+
     if (txtTitulo.value.length < 1  || txtDescricao.value.length < 1){
         feedbackMessage.style.transform = 'translateY(0)'
-    } else {
-        feedbackMessage.style.transform = 'translateY(calc(-2rem - 100%))'
-        //impede que o evento occora, no caso o envio do formulario
-        e.preventDefault()
     }
 
-
-    //Fecha feedbackMessage clickando, caso valores estiverem incompletos
-    closeMenssage.addEventListener('click', () => {
+    //Fecha feedbackMessage clickando
+    function fechafeedbackMessage () {
         feedbackMessage.style.transform = 'translateY(calc(-2rem - 100%))'
-    })
+        //por criar o evento dentro da funçao, sempre ta criando um evento, ai para isso precisa remover o evento com o removeEventListener()
+        closeMenssage.removeEventListener('click', fechafeedbackMessage)
+    }
 
-    
-    //Fecha feedbackMessage com o esc, caso valores estiverem incompletos
-    document.addEventListener('keyup', () => {
-    const tecla = event.keyCode;
-        if (tecla === 27) {
-            feedbackMessage.style.transform = 'translateY(calc(-2rem - 100%))'
-        }
-    })
+    closeMenssage.addEventListener('click', fechafeedbackMessage)
 });
+
+
+
+//Fecha feedbackMessage com o esc
+function escMessage (event) {
+    const tecla = event.keyCode
+    if (tecla !== 27) return
+
+    feedbackMessage.style.transform = 'translateY(calc(-2rem - 100%))'
+}
+document.addEventListener('keyup', escMessage)
+
+
+
 
 
 
@@ -76,11 +90,14 @@ txtDescricao.addEventListener('input', () => {
 
 
 
-
-
 // pegar a tecla
 // function pegaTecla(){
 //     var tecla = event.keyCode;
 //     console.log(tecla);
 // }
 // document.addEventListener('keydown', pegaTecla)
+
+
+
+
+//falta melhorar, tao sempre criando os eventos, toda hora de enviar o formulario
