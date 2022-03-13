@@ -127,3 +127,7 @@ textarea{
     transform: translateY(0px);
 }
 
+
+#feedbackMessage:focus {
+    background-color: gold;
+}

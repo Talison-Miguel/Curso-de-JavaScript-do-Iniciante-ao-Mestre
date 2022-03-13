@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="msg" id="msg" cols="30" rows="10"></textarea>
+
+    <script>
+        const msg = document.querySelector('#msg')
+
+
+        function keypress (event) {
+            console.log('keypress')
+            console.log(this.value)
+        }
+
+        //keyup o unico que consegue mostrar todos os valores atualizados
+        function keyup (event) {
+            console.log('keyup')
+            console.log(this.value)
+        }
+
+        //outros teclas s o keydow e key up dispara
+        function keydown (event) {
+            console.log('keydown')
+            console.log(this.value)
+        }
+
+        msg.addEventListener('keypress', keypress)
+        msg.addEventListener('keyup', keyup)
+        msg.addEventListener('keydown', keydown)
+
+    </script>
+</body>
+</html>
