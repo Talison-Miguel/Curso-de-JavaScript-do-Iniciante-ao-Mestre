@@ -3,28 +3,46 @@
 const itemImput      = document.querySelector('#item-input')
 const btnAddItemForm = document.querySelector('#todo-add')
 const ul             = document.querySelector('#todo-list')
+const lis = ul.getElementsByTagName('li')
+
+
 
 //um array de objetos _ Uma estrutura de dados
-let arrTasks = [
-    {
-        name: 'task 1',
-        createAt: Date.now(),
-        completed: false
-    },
-    {
-        name: 'task 2',
-        createAt: Date.now(),
-        completed: false
-    }
-]
+let arrTasks = getSavedData()
+
+function getSavedData () {
+    //converteu em string
+    let tasksData = localStorage.getItem('tasks')
+
+    //converteu para obj dnv
+    tasksData = JSON.parse(tasksData)
+    console.log(tasksData)
+
+    //Se tiver uma task e length retorna ela, se nao a array normal
+    return tasksData && tasksData.length ? tasksData : [
+        {
+            name: 'task 1',
+            createAt: Date.now(),
+            completed: false
+        },
+        {
+            name: 'task 2',
+            createAt: Date.now(),
+            completed: false
+        }
+    ]
 
 
-// //adiciona o click em cada li
-// function addEventLi (li) {
-//     li.addEventListener('click', function () {
-//         console.log(this)      
-//     })
-// }
+}
+
+//atualiza o local storage
+function setNewData () {
+    localStorage.setItem('tasks', JSON.stringify(arrTasks))
+}
+
+setNewData()
+
+
 
 
 //gerar li e retorna ela _ recebe o obj da estrutura de dados
@@ -39,7 +57,8 @@ function generateLiTask (obj) {
     li.className = 'todo-item'
 
     checkButton.classList = 'button-check'
-    checkButton.innerHTML = '<i class="fas fa-check displayNone"></i>'
+    checkButton.innerHTML = `
+    <i class="fas fa-check ${obj.completed ? '' : 'displayNone'}" data-action="checkButton"></i>`
     checkButton.setAttribute('data-action', 'checkButton')
     li.appendChild(checkButton)
 
@@ -56,6 +75,8 @@ function generateLiTask (obj) {
     const inputEdit = document.createElement('input')
     inputEdit.setAttribute('type', 'text')
     inputEdit.className = 'editInput'
+    inputEdit.value = obj.name
+
     containerEdit.appendChild(inputEdit)
     const containerEditButton = document.createElement('button')
     containerEditButton.className = 'editButton'
@@ -95,35 +116,80 @@ function addTask(task){
         createAt: Date.now(),
         completed: false
     })
+
+    setNewData()
 }
 
 function clickeUl (event) {
-    //event.targe _ onde foi clickado dispara o evento
-    console.log(event.target)
-    //pega o valor do atributo
-    console.log(event.target.getAttribute('data-action'))
-
-
     //objeto com a funçao que ira fazer de tal atributo
+    //pega o dataAction com o event.target, onde clicka
+    const dataAction = event.target.getAttribute('data-action')
+    console.log(event.target)
+    if(!dataAction) return
+
+    let currentLi = event.target
+    while (currentLi.nodeName !== 'LI') {
+        currentLi = currentLi.parentElement
+    }
+    console.log(currentLi)
+    const currentLiIndex = [...lis].indexOf(currentLi)
+    console.log(currentLiIndex)
+
+
+    //currentLi é onde foi clickado
+    //currentLiIndex é o indice de onde foi clickado
+
+
     const actions = {
-        checkButton: function (){
-            console.log('checkButton no objeto')
-        },
         editButton: function () {
-            console.log('editButton no objeto')
+            const editContainer = currentLi.querySelector('.editContainer');
+            //vai passar por todos que tem a classe editContainer e remover, para depois que criar outro so ficar ele
+            [...ul.querySelectorAll('.editContainer')].forEach( container => {
+                container.removeAttribute('style')
+            });
+
+            editContainer.style.display = 'flex';
+
         },
         deleteButton: function () {
-            console.log('deleteButton no objeto')
+            arrTasks.splice(currentLiIndex, 1)
+            console.log(arrTasks)
+            renderTasks()
+            setNewData()
+            // currentLi.remove()
+            // currentLi.parentElement.removeChild(currentLi)
+        },
+        containerEditButton: function () {
+            const val = currentLi.querySelector('.editInput').value
+            arrTasks[currentLiIndex].name = val
+            renderTasks()
+            setNewData()
+        },
+        containerCancelButton: function () {
+            currentLi.querySelector('.editContainer').removeAttribute('style')
+        
+            currentLi.querySelector('.editInput').value = arrTasks[currentLiIndex].name
+        },
+        checkButton: function () {
+            arrTasks[currentLiIndex].completed = !arrTasks[currentLiIndex].completed
+
+            // if (arrTasks[currentLiIndex].completed) {
+            //     currentLi.querySelector('.fa-check').classList.remove('displayNone')
+            // } else {
+            //     currentLi.querySelector('.fa-check').classList.add('displayNone')
+            // }
+
+            setNewData()
+            renderTasks()
         }
     }
 
-    //pega o dataAction com o event.target, onde clicka
-    const dataAction = event.target.getAttribute('data-action')
     //se o action for o do target 'onde click', vc executa a funçao
     if(actions[dataAction]) {
         actions[dataAction]()
     }
 }
+
 
 //Adicionado um item na lista
 btnAddItemForm.addEventListener('submit', function (event) {
@@ -131,7 +197,8 @@ btnAddItemForm.addEventListener('submit', function (event) {
     console.log(itemImput.value)
 
     // gera um obj com a propiedade value
-    addTask(itemImput.value)
+    if (itemImput.value !== '') addTask(itemImput.value)
+
     renderTasks ()
 
     itemImput.value = ''
