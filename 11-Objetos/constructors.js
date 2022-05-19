@@ -6,7 +6,7 @@ function Task(name) {
 
     let _name = name
 
-    //tudo que for colocado this.propiedde vai ver adicionado por esse objeto recem criado pelo operador new
+    //tudo que for colocado this.propiedde vai ver adicionado por esse objeto recem criado pelo operador new, entao o this refere-se ao objeto
 
     this.createdAt = new Date()
     this.updateAt = null
