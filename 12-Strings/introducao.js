@@ -89,3 +89,14 @@ console.log("-------------------------")
 let str2 = "hoje é sabado"
 console.log(str2.startsWith("hoje", 0))
 console.log(str2.endsWith("sabado"))
+
+
+console.log("-------------------------")
+
+
+//charAt _ vai reculperar o valor de tal posiçao
+//charCodeAt _ retorna o codigo da tabela de uni code do caractere
+let str3 = "abcdefgh"
+console.log(str3.charAt(1))
+console.log(str3[1])
+console.log(str3.charCodeAt(0))
