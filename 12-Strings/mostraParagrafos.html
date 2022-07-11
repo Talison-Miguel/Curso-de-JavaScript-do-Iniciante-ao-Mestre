@@ -93,8 +93,42 @@
 	<script type="text/javascript">
 		const paragrafos = Array.from(document.querySelectorAll('.card p'));
 		const originText = paragrafos.map(p => p.innerText)
+		const maxLength = 100
 
+		paragrafos.forEach( (p, i) => {
+			if(p.innerText.length > maxLength) {
+				//substring corta um pedaço da string
+				p.textContent = p.innerText.substring(0, maxLength) + '...'
 
+				const btn = document.createElement('button')
+				btn.innerHTML = '<i class="fas fa-chevron-down"></i>'
+				//.parentElement vai ter acesso ao parente do paragrafo, no caso o card
+				p.parentElement.classList.add('text-hidden')
+				p.parentElement.appendChild(btn)
+
+				// btn.addEventListener('click', toggleText)
+				btn.addEventListener('click', function(event) {
+					toggleText(event, p, i)
+				})
+			}
+		})
+
+		function toggleText(event, p, i) {
+			console.log(event.currentTarget)
+			// console.log(this)
+			const card = event.currentTarget.parentElement
+
+			//remove ou adiciona a classe se nao existir
+			card.classList.toggle('text-hidden')
+			event.currentTarget.querySelector('i').classList.toggle('fa-chevron-down')
+			event.currentTarget.querySelector('i').classList.toggle('fa-chevron-up')
+		
+			if( card.classList.contains('text-hidden')) {
+				card.querySelector('p').textContent = originText[i].substring(0, maxLength) + '...'
+			} else {
+				card.querySelector('p').textContent = originText[i]
+			}
+		}
 	</script>
 </body>
 

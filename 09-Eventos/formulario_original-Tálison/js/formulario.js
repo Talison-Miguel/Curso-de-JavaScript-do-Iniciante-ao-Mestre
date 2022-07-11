@@ -85,19 +85,3 @@ txtDescricao.addEventListener('input', () => {
         }
     }
 })
-
-
-
-
-
-// pegar a tecla
-// function pegaTecla(){
-//     var tecla = event.keyCode;
-//     console.log(tecla);
-// }
-// document.addEventListener('keydown', pegaTecla)
-
-
-
-
-//falta melhorar, tao sempre criando os eventos, toda hora de enviar o formulario
