@@ -19,5 +19,3 @@ console.log(formatarNome('Talison Miguel')) // Miguel,Talison
 console.log(formatarNome('Talison Miguel Amancio')) // Miguel Amancio, Talison
 console.log(formatarNome('Talison Miguel Amancio')) // Miguel Amancio, Talison
 
-
-console.log('abc def gh'.split('e'))
