@@ -37,4 +37,27 @@ let numero4 = 123456.789
 console.log(numero4.toLocaleString())
 console.log(numero4.toLocaleString("pt-BR"))
 console.log(numero4.toLocaleString("pt-BR", {style: "currency", currency: "BRL"}))
-//__ fica: nunca guardar no banco de dados o numero formatado, guarde o numero real
+//__ dica: nunca guardar no banco de dados o numero formatado, guarde o numero real
+
+
+
+console.log("____________________")
+//A propriedade Number.MAX_VALUE representa o maior valor numérico representável em JavaScript._ fixo: 1.7976931348623157e+308
+//A propriedade Number.MIN_VALUE representa o menor valor positivo numérico representável em JavaScript._ fixo: 5e-324
+console.log(Number.MIN_VALUE)
+console.log(Number.MAX_VALUE)
+
+//parseFloat _ transforma string em numero
+let num = "100"
+console.log(parseFloat(num))
+console.log(Number.parseFloat("999"))
+
+console.log(isFinite(2))
+console.log(Number.isFinite("2"))
+
+
+console.log("____________________")
+//isNaN() __ determina se o valor é NaN ou não
+let numeroAsString = "a3.456"
+console.log(isNaN(numeroAsString))
+console.log(numeroAsString, typeof numeroAsString, parseFloat(numeroAsString))
