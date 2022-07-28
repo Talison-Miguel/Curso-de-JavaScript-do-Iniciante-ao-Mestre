@@ -10,4 +10,4 @@ function getRandomNumber(inicio = 0, fim = 10, integer = true) {
     return numeroGerado
 }
 
-console.log(getRandomNumber(0, 20, false))
+console.log(getRandomNumber(0, 20, true))
