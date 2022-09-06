@@ -39,11 +39,14 @@ console.log(Math.cbrt(8))
 
 
 console.log("________________")
+console.log("Math.random")
 
 //Math.random() _ retorna um numero random entre 0 e 1 se multiplicar pode aumentar tantas vezes
 console.log(Math.random(10))
 console.log(Math.random(10) * 2)
 console.log(Math.random(10) * 10)
+console.log(Math.random(10) * 20)
+
 
 //numero entre 0 e quase 10, arredondado pra baixo
 console.log(Math.floor(Math.random(10) * 10))
