@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div></div>
+
+    <script>
+        // setTimeout() ___ Define um cronômetro que executa uma função assim que o cronômetro expirar.
+        // setInterval() ___ Agenda uma funçao pra ser execultada de tempo em tempo
+        // clearTimeout() ___ limpa o tempo
+        // clearinterval() ___ limpa o tempo
+    
+        const tempoInicio = Date.now()
+
+        let n = 0
+        setTimeout(function() {
+            console.log("timeout depois de 200 ml")
+            const tempoFim = Date.now()
+            console.log(tempoFim - tempoInicio)
+        }, 2000)
+
+        let str = ""
+        let d = document.querySelector('div')
+
+        for( i = 0; i < 1000; i++) {
+            str += `i: -- ${i}`
+            d.textContent += str
+        }
+
+        const intervalo = setInterval(function() {
+            console.log("interval n:", n++)
+            if(n > 8) {
+                clearInterval(intervalo)
+            }
+        }, 1000)
+    </script>
+</body>
+</html>
