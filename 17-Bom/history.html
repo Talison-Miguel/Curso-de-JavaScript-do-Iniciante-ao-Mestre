@@ -11,6 +11,9 @@
     <button id="btn-back">Volta</button>
     <br>
     <button id="btn-forward">Avançar</button>
+    <br>
+    <button id="btn-close">Fechar com o metodo close</button>
+    <br>
 
     <a href="http://google.com">google</a>
 
@@ -26,6 +29,15 @@
         document.getElementById('btn-forward').addEventListener('click', () => {
             history.forward()
         })
+
+        document.getElementById('btn-close').addEventListener('click', () => {
+            close()
+        })
+
+        console.log(opener)
+        if(opener) {
+            opener.teste2()
+        }
     </script>
 </body>
 </html>

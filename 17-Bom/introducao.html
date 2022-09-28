@@ -10,8 +10,31 @@
     <h1>Teste BOM curso js</h1>
 
     <a href="history.html"> Go history</a>
+    <br>
+
+    <button>Abre com metodo open()</button>
+    <br>
 
     <script>
+        //open() abre tal pagina
+        //close() fecha a pagina aberta
+        document.querySelector('button').addEventListener('click', function() {
+            window.open("history.html", 'nome-janela', 'width=600,heigth=200')
+        })
+        console.log(opener)
+
+        let teste = "variavel de introducao.html"
+
+        function teste2() {
+            console.log('teste 2 chamado')
+        }
+
+
+        //print() tira print
+
+        //-----------
+
+
         // innerHeight
         // innerWidth
         // outerHeight
@@ -36,6 +59,7 @@
 
         //------------
         //screen _ informaçoes sobre a tela do usuario
+        
     </script>
 </body>
 </html>
