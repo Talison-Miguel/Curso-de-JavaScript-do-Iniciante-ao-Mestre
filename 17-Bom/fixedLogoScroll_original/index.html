@@ -68,12 +68,19 @@
     </div>
 
     <script>
+        const body = document.getElementsByClassName('fx')
 
-        (function () {
-            
-        })()
+        function scrollAnimation() {
+            if(pageYOffset > 260 && !body[0]) {
+                document.body.classList.add('fx')
+            } else if(pageYOffset < 260 && body[0]) {
+                document.body.classList.remove('fx')
+            }
+        }
 
+        window.addEventListener('scroll', scrollAnimation)
 
+        console.log(topBar)
     </script>
 </body>
 
