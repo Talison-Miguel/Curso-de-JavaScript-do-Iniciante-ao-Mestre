@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: red;">Elemento qualquer</div>
+
+    <script>
+        //element.style
+        let div = document.querySelector('div')
+        console.log(div.style.backgroundColor)
+        div.style.backgroundColor = "#DDD"
+        console.log(div.style.backgroundColor)
+        
+
+        //element.classList.add/remove/toggle() _ adiciona e remove uma classe
+        div.classList.add('teste1')
+        console.log(div)
+        console.log(div)
+
+
+        //element.className.add() _ obtem as classes
+        console.log(div.className)
+        div.className = 'teste3'
+        console.log(div)
+
+
+        //getComputedStyle(element) _ mostra os stylos de css computados/processados
+        // console.log(getComputedStyle(div))
+        console.log(getComputedStyle(div).backgroundColor)
+
+
+        //element.offsetTop/offsetHeight... _ mostra a posiçao de tal coisa de acordo com o documento, seja top/Left ou outra
+        console.log(div.offsetTop)
+        console.log(div.offsetLeft)
+        console.log(div.offsetHeight) //tamanho de altura do elemento
+        console.log(div.offsetWidth) //tamanho de largura do elemento
+
+
+        //element.getBoundingClientRect() _ posiçao em relaçao a view porte
+        //de acordo com o top e o left de cima, da view port
+        console.log(div.getBoundingClientRect())
+        console.log(div.getBoundingClientRect().top)
+    </script>
+</body>
+</html>
