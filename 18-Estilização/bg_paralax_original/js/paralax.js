@@ -1,5 +1,3 @@
-
-
 const dataParalaxContainer = [...document.querySelectorAll('[data-paralax]')]
 
 function isGettingOut(container) {
