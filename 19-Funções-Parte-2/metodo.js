@@ -18,7 +18,11 @@ const dog = {
 
 const cat = {
     name: 'mingau',
-    falar: miar
+    falar() {
+        console.log(this)
+        miar.call(this)
+        //call(this) _ muda o this 
+    }
 }
 
 dog.falar()
