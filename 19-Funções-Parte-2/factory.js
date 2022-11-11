@@ -12,7 +12,6 @@ function criarCachorro(name) {
             posicao += distancia
             console.log(this.name, 'andou ', distancia, ' m')
         },
-
         //associa uma propriedade de um objeto a uma função que será chamada quando tal propriedade é acessada
         //get ___chama uma propiedade como função
         get posicao() {
@@ -25,7 +24,7 @@ function criarCachorro(name) {
 const rex = criarCachorro('Rex')
 rex.andar(10)
 rex.andar(5)
-console.log(rex.posicao)
+rex.pegaPosicao()
 console.log(rex)
 
 console.log('-----------')
@@ -34,5 +33,4 @@ const toto = criarCachorro('Toto')
 toto.andar(20)
 toto.andar(-5)
 toto.andar(2)
-
-console.log(toto.posicao)
+toto.pegaPosicao()
