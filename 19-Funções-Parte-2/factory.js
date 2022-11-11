@@ -12,9 +12,11 @@ function criarCachorro(name) {
             posicao += distancia
             console.log(this.name, 'andou ', distancia, ' m')
         },
-
-        pegaPosicao() {
+        //associa uma propriedade de um objeto a uma função que será chamada quando tal propriedade é acessada
+        //get ___chama uma propiedade como função
+        get posicao() {
             console.log(`${this.name} esta na posição ${posicao}m`)
+            return posicao
         }
     }
 } 
