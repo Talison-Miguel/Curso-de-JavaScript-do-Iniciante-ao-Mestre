@@ -1,0 +1,9 @@
+Objetos contém propiedades(dados) e metodos(funçoes)
+
+PROTOTYPE É MEIO QUE O OBJETO GLOBAL DO JS
+!!A propiedade prototype de uma função construtora armazena um objeto
+//cadeia de prototypo, procura no codigo todo, nasa propiedades dos objetos.
+
+
+vc adiciona uma funçao global para ese construtor
+contrutor.prototype.novFunçao = function () {}
