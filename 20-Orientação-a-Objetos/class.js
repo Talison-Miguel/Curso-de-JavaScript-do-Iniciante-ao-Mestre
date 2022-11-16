@@ -30,7 +30,7 @@ let dog = new Cachorro('Dog')
 
 //---ES6---
 class AnimalC {
-    //essa funça oconstrutora sera execultada
+    //essa funçao construtora sera execultada
     constructor(tipo) {
         //verifica se tem tipo, se nao tiver vai ser o padrao
         if(tipo) {
