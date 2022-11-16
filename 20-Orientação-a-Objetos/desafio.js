@@ -1,13 +1,15 @@
-function ReplaceAllCaracteres(texto) {
-    this.texto = texto.split('')
-
+String.prototype.replaceeee = function() {
+    console.log(this.valueOf())
 }
 
 //Adicionando funçao no prototype so uma vez
-ReplaceAllCaracteres.prototype.replaceString = function(stringParaSubstituir, substituicao) {
+String.prototype.replaceString = function(stringParaSubstituir, substituicao) {
+    let texto = this.valueOf()
 
     const letraReplace = substituicao
-    const array = this.texto
+    const array = texto.split('')
+    console.log(array)
+
     // console.log(this.texto)
     let string = []
     array.map((letra) => {
@@ -18,17 +20,17 @@ ReplaceAllCaracteres.prototype.replaceString = function(stringParaSubstituir, su
         }
     })
 
-    let stringInicial = this.texto.join()
+    let stringInicial = texto
     let stringFinal = string.join()
     console.log( 'String incial =>', stringInicial)
     console.log( 'String Final =>',stringFinal)
 }
 
 
-let string1 = new ReplaceAllCaracteres('talis')
+let string1 = 'talis'
 string1.replaceString('a', '4')
 
 console.log('___________________________')
 
-let string2 = new ReplaceAllCaracteres('texto')
+let string2 = 'texto'
 string2.replaceString('t','*')
