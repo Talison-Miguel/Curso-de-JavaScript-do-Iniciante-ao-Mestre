@@ -1,7 +1,3 @@
-String.prototype.replaceeee = function() {
-    console.log(this.valueOf())
-}
-
 //Adicionando funçao no prototype so uma vez
 String.prototype.replaceString = function(stringParaSubstituir, substituicao) {
     let texto = this.valueOf()
