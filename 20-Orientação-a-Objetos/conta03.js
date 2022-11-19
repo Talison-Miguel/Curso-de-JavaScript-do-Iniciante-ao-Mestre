@@ -1,8 +1,6 @@
 //Desafio Conta bancária
-// 3. criar classe Cliente e compor as classes concretas -> poupança e bancaria
-// - nome
-// - documento
-//* no lugar de client e numero
+// 4. Agora surgiu a necessidade de Cliente ser Pessoa Física ou Juridica.
+// Pessoa Física tem documento CPF e Juridica tem documento CNPJ
 
 
 class ContaBancaria {
@@ -67,7 +65,7 @@ class ContaCorrente extends ContaBancaria {
 }
 
 class ContaPoupanca extends ContaBancaria {
-    constructor(client, numero, aniversario) {
+    constructor(client, numero) {
         super(client, numero)
         this.aniversario = new Date().toDateString()
     }
@@ -78,15 +76,39 @@ class ContaPoupanca extends ContaBancaria {
 //challenge 3
 class Cliente {
     constructor(nome, documento) {
+        if(this.constructor === Cliente) {
+            throw new Error('A class Client é abstrata')
+        }
+
         this.nome = nome
         this.documento = documento
     }
 }
 
-const talison = new Cliente('Tálison', '3398419804-4')
-const analidia = new Cliente('Analidia', '3398416047-0')
 
 
-const client1 = new ContaCorrente(talison, 1)
-const client01 = new ContaPoupanca(talison, 2)
-const client2 = new ContaPoupanca(analidia, 3)
+
+//challenge 4
+class PessoaFisica extends Cliente {
+    constructor(nome, cpf) {
+        super(nome, cpf)
+        this.nome = nome
+        this.documento = `cpf: ${cpf}` 
+    }
+}
+
+class PessoaJuridica extends Cliente {
+    constructor(nome, cnpj) {
+        super(nome, cnpj)
+        this.nome = nome
+        this.documento = `cnpj: ${cnpj}`
+    }
+}
+
+
+const talisonMiguel = new PessoaFisica('TálisonMiguel', '042.337.296-61')
+const amancio = new PessoaJuridica('Amancio' ,'083.36721699')
+
+const client1 = new ContaCorrente(talisonMiguel, 1)
+const client01 = new ContaPoupanca(amancio, 2)
+const client2 = new ContaPoupanca(talisonMiguel, 3)
