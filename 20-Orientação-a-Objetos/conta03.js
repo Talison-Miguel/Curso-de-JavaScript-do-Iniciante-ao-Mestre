@@ -15,6 +15,10 @@ class ContaBancaria {
         this.saldo = 0
     }
 
+    get dadosCliente() {
+        return `${this.cliente.nome}, ${this.cliente.tipoDocumento}: ${this.cliente.documento}`
+    }
+
     //aqui vai os metodos
     depositar(deposito) {
         this.saldo += deposito
@@ -75,13 +79,14 @@ class ContaPoupanca extends ContaBancaria {
 
 //challenge 3
 class Cliente {
-    constructor(nome, documento) {
+    constructor(nome, documento, tipoDocumento) {
         if(this.constructor === Cliente) {
             throw new Error('A class Client é abstrata')
         }
 
         this.nome = nome
         this.documento = documento
+        this.tipoDocumento = tipoDocumento
     }
 }
 
@@ -90,25 +95,26 @@ class Cliente {
 
 //challenge 4
 class PessoaFisica extends Cliente {
-    constructor(nome, cpf) {
-        super(nome, cpf)
-        this.nome = nome
-        this.documento = `cpf: ${cpf}` 
+    constructor(nome, documento) {
+        super(nome, documento, "CPF")
     }
 }
 
 class PessoaJuridica extends Cliente {
-    constructor(nome, cnpj) {
-        super(nome, cnpj)
-        this.nome = nome
-        this.documento = `cnpj: ${cnpj}`
+    constructor(nome, documento) {
+        super(nome, documento, "CNPJ")
     }
 }
 
 
 const talisonMiguel = new PessoaFisica('TálisonMiguel', '042.337.296-61')
-const amancio = new PessoaJuridica('Amancio' ,'083.36721699')
+const amancio = new PessoaJuridica('Amancio' ,'083.367216/99-21')
 
 const client1 = new ContaCorrente(talisonMiguel, 1)
-const client01 = new ContaPoupanca(amancio, 2)
-const client2 = new ContaPoupanca(talisonMiguel, 3)
+const client2 = new ContaPoupanca(amancio, 2)
+const client3 = new ContaPoupanca(talisonMiguel, 3)
+
+
+console.log(client1.dadosCliente)
+console.log(client2.dadosCliente)
+console.log(client3.dadosCliente)
