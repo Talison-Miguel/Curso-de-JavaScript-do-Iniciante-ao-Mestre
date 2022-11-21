@@ -1,6 +1,25 @@
 //Desafio Conta bancária
-// 4. Agora surgiu a necessidade de Cliente ser Pessoa Física ou Juridica.
-// Pessoa Física tem documento CPF e Juridica tem documento CNPJ
+//polimorfismo
+//criar uma classe especializada em trangerir.
+//Essa classe tera um unico metodo execulte(contaOrigem, contaDestino, valor)
+//tanto origem quanto destino precisasm ser isntancias de contabancaria
+//tanto cc quanto o cp tem o metodo sacar(),  que tem implementaçoes diferentes
+//idenpendente se for cc ou cp podemos chamar ese metodo
+
+class Transferir {
+    static execulte(contaOrigem, contaDestino, valor) {
+        if(!contaOrigem instanceof ContaBancaria || !contaDestino instanceof ContaBancaria) {
+            throw new Error('Contas precisam herdar de ContaBancaria')
+        }
+        
+        try {
+            contaOrigem.sacar(valor)
+            contaDestino.depositar(valor)
+        } catch (error) {
+            console.log('Deu ruim', error.message)
+        }
+    }
+}
 
 
 class ContaBancaria {
@@ -113,8 +132,11 @@ const amancio = new PessoaJuridica('Amancio' ,'083.367216/99-21')
 const client1 = new ContaCorrente(talisonMiguel, 1)
 const client2 = new ContaPoupanca(amancio, 2)
 const client3 = new ContaPoupanca(talisonMiguel, 3)
+client2.depositar(900)
 
 
 console.log(client1.dadosCliente)
 console.log(client2.dadosCliente)
 console.log(client3.dadosCliente)
+
+
