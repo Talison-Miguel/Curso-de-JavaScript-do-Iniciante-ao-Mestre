@@ -28,16 +28,20 @@ document.querySelector('[data-table-alunos] thead').appendChild(htmlHeader)
 
 
 //Percorrer cada aluno e gerar o html para incluir no tbody
-alunos.forEach(aluno => {
-    const htmlBody = document.createElement('tr')
-    let htmlMedias = `<td>${aluno.nome}</td>`
-    Object.keys(aluno.notas).forEach( materia => {
-        htmlMedias += `<td>${aluno.media[materia]}</td>`
-    } )
-    htmlBody.innerHTML = htmlMedias
-    document.querySelector('[data-table-alunos] tbody').appendChild(htmlBody)
-})
+function render() {
+    document.querySelector('[data-table-alunos] tbody').innerHTML =''
+    alunos.forEach(aluno => {
+        const htmlBody = document.createElement('tr')
+        let htmlMedias = `<td>${aluno.nome}</td>`
+        Object.keys(aluno.notas).forEach( materia => {
+            htmlMedias += `<td>${aluno.media[materia]}</td>`
+        } )
+        htmlBody.innerHTML = htmlMedias
+        document.querySelector('[data-table-alunos] tbody').appendChild(htmlBody)
+    })
+}
 
+render()
 
 
 
@@ -59,5 +63,12 @@ formulario.addEventListener('submit', function(e) {
         },
     }
 
+    newAluno.media = {}
+
+    for(let materia in newAluno.notas) {
+        newAluno.media[materia] = avarege(...newAluno.notas[materia])
+    }
+
     alunos.push(newAluno)
+    render()
 })
