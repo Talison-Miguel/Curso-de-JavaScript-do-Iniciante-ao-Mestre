@@ -1,4 +1,6 @@
-class alunoModel {
+//Sua responsabilidade é gerenciar e controlar a forma como os dados se comportam por meio das funções
+
+class AlunoModel {
     // constructor(aluno) {
     //     this.nome = aluno.nome
     // }
@@ -8,8 +10,8 @@ class alunoModel {
         this._id = (_id !== undefined) ? _id : this.generateId() 
         this.notas = {...notas}
 
-        if(this._id > alunoModel.maxId) {
-            alunoModel.maxId = this._id
+        if(this._id > AlunoModel.maxId) {
+            AlunoModel.maxId = this._id
         }
 
         this.media = {}
@@ -20,8 +22,8 @@ class alunoModel {
     }
 
     generateId() {
-        return alunoModel.maxId + 1
+        return AlunoModel.maxId + 1
     }
 }
 
-alunoModel.maxId = 0
+AlunoModel.maxId = 0
