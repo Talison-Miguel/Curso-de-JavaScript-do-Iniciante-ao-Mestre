@@ -90,44 +90,10 @@
     <!--JavaScript at end of body for optimized loading-->
     <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
     <script src="js/calc.js"></script>
-
-    <script>
-        const alunos = [
-            {
-                _id: 0,
-                nome: "chico melato",
-                notas: {
-                    portugues: [1, 1, 2, 2],
-                    matematica: [2, 2, 2, 2],
-                    historia: [2, 2, 3, 3],
-                    ciencias: [3, 3, 3, 3],
-                },
-            },
-            {
-                _id: 1,
-                nome: "talita lima",
-                notas: {
-                    portugues: [4, 4, 4, 4],
-                    matematica: [4, 4, 5, 5],
-                    historia: [5, 5, 6, 6],
-                    ciencias: [7, 7, 8, 9],
-                },
-            },
-            {
-                _id: 1,
-                nome: "Tálison",
-                notas: {
-                    portugues: [9, 9, 9, 9],
-                    matematica: [10, 9, 8, 9],
-                    historia: [8, 9, 9, 6],
-                    ciencias: [10, 7, 8, 9],
-                },
-            },
-        ];
-
-    </script>
-    <script src="js/app.js">
-
-    </script>
+    <script src="js/Models/Aluno.model.js"></script>
+    <script src="js/Services/Alunos.service.js"></script>
+    <script src="js/Views/Alunos.view.js"></script>
+    <script src="js/Controllers/Alunos.controller.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

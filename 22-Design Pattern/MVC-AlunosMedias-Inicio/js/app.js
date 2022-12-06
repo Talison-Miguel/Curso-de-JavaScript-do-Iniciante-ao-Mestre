@@ -1,74 +1,58 @@
-
-//Calcula a media por propiedade de cada aluno e cria uma propiedade chamda media
-alunos.forEach( aluno => {
-    aluno.media = {}
-
-    for(let materia in aluno.notas) {
-        aluno.media[materia] = avarege(...aluno.notas[materia])
-    }
-} )
-
-
-
-
-//Inserir no thead 'nome' e cada uma das materias
-const htmlHeader = document.createElement('tr')
-htmlHeader.innerHTML = '<td>Nome</td>'
-
-//recebe um obj e gera um array com as propiedades
-let htmlHeaderMaterias = Object.keys(alunos[0].notas).map(materia => {
-    console.log(materia)
-    return '<td>' + materia + '</td>'
-}).join('')
-
-htmlHeader.innerHTML += htmlHeaderMaterias
-document.querySelector('[data-table-alunos] thead').appendChild(htmlHeader)
-
-
-
-
-//Percorrer cada aluno e gerar o html para incluir no tbody
-function render() {
-    document.querySelector('[data-table-alunos] tbody').innerHTML =''
-    alunos.forEach(aluno => {
-        const htmlBody = document.createElement('tr')
-        let htmlMedias = `<td>${aluno.nome}</td>`
-        Object.keys(aluno.notas).forEach( materia => {
-            htmlMedias += `<td>${aluno.media[materia]}</td>`
-        } )
-        htmlBody.innerHTML = htmlMedias
-        document.querySelector('[data-table-alunos] tbody').appendChild(htmlBody)
-    })
-}
-
-render()
-
-
-
-//Adicionar aluno
-const formulario = document.querySelector('form')
-
-formulario.addEventListener('submit', function(e) {
-    e.preventDefault()
-    const nome = document.getElementById('first_name').value
-
-    const newAluno = {
+const alunos = [
+    {
         _id: 0,
-        nome,
+        nome: "chico melato",
         notas: {
             portugues: [1, 1, 2, 2],
             matematica: [2, 2, 2, 2],
             historia: [2, 2, 3, 3],
             ciencias: [3, 3, 3, 3],
         },
-    }
+    },
+    {
+        _id: 1,
+        nome: "talita lima",
+        notas: {
+            portugues: [4, 4, 4, 4],
+            matematica: [4, 4, 5, 5],
+            historia: [5, 5, 6, 6],
+            ciencias: [7, 7, 8, 9],
+        },
+    },
+    {
+        _id: 2,
+        nome: "Tálison",
+        notas: {
+            portugues: [9, 9, 9, 9],
+            matematica: [10, 9, 8, 9],
+            historia: [8, 9, 9, 6],
+            ciencias: [10, 7, 8, 9],
+        },
+    },
+];
 
-    newAluno.media = {}
 
-    for(let materia in newAluno.notas) {
-        newAluno.media[materia] = avarege(...newAluno.notas[materia])
-    }
+const alunosService = new AlunosService()
 
-    alunos.push(newAluno)
-    render()
+//Calcula a media por propiedade de cada aluno e cria uma propiedade chamda media
+alunos.forEach( aluno => {
+    alunosService.add(new AlunoModel(aluno))
+} )
+
+
+const alunosView = new AlunosView(document.querySelector('[data-table-alunos]'))
+
+
+const alunosControler = new AlunosControler(alunosService, alunosView)
+
+
+
+
+
+const formulario = document.querySelector('form')
+formulario.addEventListener('submit', function(e) {
+    e.preventDefault()
+    const nome = document.getElementById('first_name').value
+
+   alunosControler.add({ nome })
 })
