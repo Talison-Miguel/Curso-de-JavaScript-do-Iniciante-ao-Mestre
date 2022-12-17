@@ -1,10 +1,10 @@
 //Essa camada é responsável por apresentar as informações de forma visual ao usuário
 class AlunosView {
-    constructor(table) {
+    constructor(table, materias) {
         this.tableList = table
         this.tableHeader = this.tableList.querySelector('thead')
         this.tableBody = this.tableList.querySelector('tbody')
-        this.materias = ['portugues', 'matematica', 'historia', 'ciencias']
+        this.materias = materias
 
         this.renderHeader()
     }
