@@ -13,7 +13,7 @@ class AlunosService {
         this.updateLocalStorage()
     }
 
-    edit(aluno) {
+    edit(aluno, notas) {
         return aluno
     }
 

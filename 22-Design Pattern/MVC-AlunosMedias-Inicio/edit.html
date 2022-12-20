@@ -63,7 +63,7 @@
         Detalhe do Aluno
       </h2>
 
-      <form class="form-add">
+      <form class="form-add" data-edit-aluno-form>
         <div class="row">
             <div class="input-field col s12">
             <input
@@ -87,7 +87,7 @@
             <div class="input-field col s12">
                 <a class="btn btn-back" href="index.html">Cancelar</a>
                 <button class="btn" type="submit" name="action">
-                    Cadastrar
+                    Salvar
                 </button>
             </div>
         </div>
@@ -119,11 +119,17 @@
         document.getElementById('first_name').value = aluno.nome
 
         const editAlunoView = new EditAlunoView(
-            document.querySelector('[data-edit-notas]'),
+            document.querySelector('[data-edit-aluno-form]'),
             new MateriasService().materias
         )
 
-        const editAlunoCrontroller = new EditAlunoCrontroller(aluno, editAlunoView)
+        const editAlunoCrontroller = new EditAlunoCrontroller(aluno, editAlunoView, alunosService)
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+          e.preventDefault()
+          const nome = document.querySelector('#first_name').value
+          editAlunoCrontroller.edit(aluno, nome)
+        })
     </script>
   </body>
 </html>
