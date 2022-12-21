@@ -8,7 +8,7 @@ class EditAlunoView {
 
     render(aluno) {
         const html = this.materias.map( materia =>  `
-            <div class="row">
+            <div class="row" data-materia='${materia}'>
                 <div class="input-field col s4">
                 <input
                     id="materia_${materia}"
@@ -20,30 +20,39 @@ class EditAlunoView {
                 </div>
                 <div class="input-field col s2">
                 <input
-                    id="nota_materia_1"
+                    data-trimestre='0'
+                    id="nota_${materia}_0"
                     type="number"
                     class="validate"
+                    // Se existir continua se nao retorna undefined
+                    value="${aluno.notas[materia]?.[0]}"
                 />
                 </div>
                 <div class="input-field col s2">
                 <input
-                    id="nota_materia_2"
+                    data-trimestre='1'
+                    id="nota_${materia}_1"
                     type="number"
                     class="validate"
+                    value="${aluno.notas[materia]?.[1]}"
                 />
                 </div>
                 <div class="input-field col s2">
                 <input
-                    id="nota_materia_3"
+                    data-trimestre='2'
+                    id="nota_${materia}_2"
                     type="number"
                     class="validate"
+                    value="${aluno.notas[materia]?.[2]}"
                 />
                 </div>
                 <div class="input-field col s2">
                 <input
-                    id="nota_materia_4"
+                    data-trimestre='3'
+                    id="nota_${materia}_3"
                     type="number"
                     class="validate"
+                    value="${aluno.notas[materia]?.[3]}"
                 />
                 </div>
             </div>
