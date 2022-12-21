@@ -27,7 +27,7 @@ class AlunosView {
 
         alunos.forEach(aluno => {
             const htmlBody = document.createElement('tr')
-            let htmlMedias = `<td>${aluno.nome}</td>`
+            let htmlMedias = `<td><a href="edit.html?id=${aluno._id}">${aluno.nome}</a></td>`
             let encontrado = false
 
             this.materias.forEach( materia => {

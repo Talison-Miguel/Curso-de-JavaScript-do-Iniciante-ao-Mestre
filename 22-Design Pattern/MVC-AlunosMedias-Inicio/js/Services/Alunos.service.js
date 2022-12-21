@@ -13,8 +13,9 @@ class AlunosService {
         this.updateLocalStorage()
     }
 
-    edit(aluno, notas) {
-        return aluno
+    edit(aluno) {
+        aluno.generateAvarege()
+        this.updateLocalStorage()
     }
 
     searchById(id) {
