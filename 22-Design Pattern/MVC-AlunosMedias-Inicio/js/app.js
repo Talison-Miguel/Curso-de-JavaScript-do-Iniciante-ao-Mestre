@@ -44,3 +44,25 @@ formulario.addEventListener('submit', function(e) {
 
    alunosControler.add({ nome })
 })
+
+
+const inputSeach = document.querySelector('#search_name')
+inputSeach.addEventListener('input', function() {
+    const name = this.value
+    sessionStorage.setItem('search', name)
+
+    if(name.length > 2 || name.length === 0) [
+        alunosControler.search(name)
+    ]
+})
+
+const inputEvent = new Event('input')
+const inputEvent_IE = document.createEvent('Event')
+inputEvent_IE.initEvent('input', true, true)
+
+if(sessionStorage.getItem('search')) {
+    inputSeach.value = sessionStorage.getItem('search')
+    // inputSeach.dispatchEvent(inputEvent)
+    inputSeach.dispatchEvent(inputEvent_IE)
+
+}
