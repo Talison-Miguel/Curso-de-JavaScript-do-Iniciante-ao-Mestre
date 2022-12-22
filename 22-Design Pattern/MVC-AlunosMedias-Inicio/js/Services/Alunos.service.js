@@ -22,6 +22,10 @@ class AlunosService {
         return this.alunos.find(aluno => aluno._id === id)
     }
 
+    search(name) {
+        return this.alunos.filter(aluno => aluno.nome.indexOf(name) >= 0)
+    }
+
     updateLocalStorage() {
         //JSON.stringfy __ vai converter o obj para string, pra guar no localStorage
         const alunos = JSON.stringify(this.alunos)
@@ -39,5 +43,4 @@ class AlunosService {
         }
     }
 
-        
 }
