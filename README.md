@@ -3,21 +3,32 @@
 </h1>
 
 <p align="center"> 
-  <img alt="SASS" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
-  <img alt="SASS" src="https://img.shields.io/badge/Typescript-%20%E2%9C%94%20-%23FFD700">
-  <img alt="SASS" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
+  <img alt="TypeScript" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
+  <img alt="Ajax" src="https://img.shields.io/badge/Ajax-%20%E2%9C%94%20-%23FFD720">
+  <img alt="OOP" src="https://img.shields.io/badge/OOP-%20%E2%9C%94%20-%23FFD730">
+  <img alt="ES Modules" src="https://img.shields.io/badge/ES%20Modules-%20%E2%9C%94%20-%23FFD750">
+  <img alt="MVC" src="https://img.shields.io/badge/MVC-%20%E2%9C%94%20-%23FFD740">
+ 
+ 
+  <br>
+ 
+ 
+  <img alt="Webpack" src="https://img.shields.io/badge/Webpack-%20%E2%9C%94%20-blue">
+  <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-%20%E2%9C%94%20-blue">
+  <img alt="NodeJS" src="https://img.shields.io/badge/NodeJS-%20%E2%9C%94%20-blue">
+  <img alt="Regex" src="https://img.shields.io/badge/Regex-%20%E2%9C%94%20-blue">
 
-  <img alt="SASS" src="https://img.shields.io/badge/JS-36.9%25-%-yellow">
-
+ 
   <br>
   
+ 
   <img src="https://img.shields.io/badge/code%20quality-A-green"/>
-  
   <img alt="Last commit" src="https://img.shields.io/badge/last%20commit-december-green">
-
   <a href="https://www.linkedin.com/in/t%C3%A1lison-miguel/">
     <img alt="Made by Tálison" src="https://img.shields.io/badge/made%20by-talison-red">
   </a>
+ 
 </p>
 
 ---
