@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center"> 
-  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript(ES6)-%20%E2%9C%94%20-%23FFD700">
   <img alt="TypeScript" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
   <img alt="Ajax" src="https://img.shields.io/badge/Ajax-%20%E2%9C%94%20-%23FFD720">
   <img alt="OOP" src="https://img.shields.io/badge/OOP-%20%E2%9C%94%20-%23FFD730">
@@ -34,7 +34,7 @@
 ---
 
 <p align="center">
-  <img alt="Imagem da Aplicação" src="certificado.jpg" />
+  <img alt="Imagem da Aplicação" src="img.jpg" />
 </p>
 
 ---
@@ -48,20 +48,19 @@
 
 ## :rocket: Sobre o Repositório
 
-Este é um repositório contendo todo conteúdo que fiz do curso, desde funcionalidades do sass até projetos. 
+Este é um repositório contendo todo conteúdo que fiz do curso, vários projetos e codigos com funcionalidades, desse curso que fiz completo do iniciante ao mestre.
 
 ---
 
 ## 👨‍💻️ Tecnogias utilizadas
 
-✅ [ SASS ](https://sass-lang.com/install) <br/>
-✅ [ CSS ](https://developer.mozilla.org/pt-BR/docs/Web/CSS) <br/>
 ✅ [ HTML ](https://developer.mozilla.org/pt-BR/docs/Web/HTML) <br/>
-
-### Padronização de código
-
-  - [Arquitetura de Projetos com SASS do Matheus Battisti]
-  -  : mouse : [ Editor Config ](https://editorconfig.org/)
+✅ [ CSS ](https://developer.mozilla.org/pt-BR/docs/Web/CSS) <br/>
+✅ [ JavaScript ](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) <br/>
+✅ [ Ajax ](https://developer.mozilla.org/pt-BR/docs/Web/Guide/AJAX) <br/>
+✅ [ Webpack ](https://webpack.js.org/) <br/>
+✅ [ MongoDB ](https://www.mongodb.com/pt-br) <br/>
+✅ [ NodeJS ](https://nodejs.org/en/) <br/>
 
 ###  IDE
 
@@ -74,7 +73,7 @@ Este é um repositório contendo todo conteúdo que fiz do curso, desde funciona
 Para copiar o projeto, utilize os comandos:
 
 ```bash
-  ❯ git clone https://github.com/Talison-Miguel/Curso-De-Sass.git
+  ❯ git clone https://github.com/Talison-Miguel/Curso-de-JavaScript-Udemy.git
 ```
 
 ---
