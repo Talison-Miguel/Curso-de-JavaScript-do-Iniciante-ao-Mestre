@@ -3,9 +3,10 @@
 </h1>
 
 <p align="center"> 
-  <img alt="SASS" src="https://img.shields.io/badge/JavaScript-✔%25-%-yellow">
-  <img alt="SASS" src="https://img.shields.io/badge/Typescript-✔%25-%-yellow">
-  <img alt="SASS" src="https://img.shields.io/badge/Typescript-✔%25-%-yellow">
+  <img alt="SASS" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
+  <img alt="SASS" src="https://img.shields.io/badge/Typescript-%20%E2%9C%94%20-%23FFD700">
+  <img alt="SASS" src="https://img.shields.io/badge/JavaScript-%20%E2%9C%94%20-%23FFD700">
+
   <img alt="SASS" src="https://img.shields.io/badge/JS-36.9%25-%-yellow">
 
   <br>
