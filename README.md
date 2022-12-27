@@ -48,7 +48,7 @@
 
 ## :rocket: Sobre o Repositório
 
-Este é um repositório contendo todo conteúdo que fiz do curso, vários projetos e codigos com funcionalidades, do iniciante ao mestre.
+Este é um repositório contendo todo conteúdo que fiz do curso, vários projetos e códigos com funcionalidades, do iniciante ao mestre.
 
 ---
 
