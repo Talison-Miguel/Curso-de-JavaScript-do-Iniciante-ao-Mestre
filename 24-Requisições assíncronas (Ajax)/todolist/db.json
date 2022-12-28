@@ -1,0 +1,51 @@
+{
+    "tasks": [
+        {
+            "title": "tarefa 1",
+            "completed": "false",
+            "createdAt": "",
+            "updatedAt": "",
+            "userId": 1,
+            "id": 1
+        },
+        {
+            "title": "tarefa 2",
+            "completed": "false",
+            "createdAt": "",
+            "updatedAt": "",
+            "userId": 2,
+            "id": 2
+        },
+        {
+            "title": "tarefa 3",
+            "completed": "false",
+            "createdAt": "",
+            "updatedAt": "",
+            "userId": 2,
+            "id": 3
+        },
+        {
+            "title": "tarefa do amancio",
+            "userId": 3,
+            "id": 4
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "email": "talison@gmail.com"
+        },
+        {
+            "id": 2,
+            "email": "miguel@gmail.com"
+        },
+        {
+            "id": 3,
+            "email": "amancio@gmail.com"
+        },
+        {
+            "id": 4,
+            "email": "italo@gmail.com"
+        }
+    ]
+}
