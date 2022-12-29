@@ -1,8 +1,11 @@
 import { Task } from "./Model/task.model.js"
 import { createXMLHttpRequest } from "./createXMLHttpRequest.js"
 
-const url = "http://localhost:3000/users/2/tasks"
-createXMLHttpRequest("GET", url, init)
+const urlUsers = "http://localhost:3000/users"
+const urlTasks = "http://localhost:3000/tasks"
+const userId = 2
+
+createXMLHttpRequest("GET", `${urlUsers}/${userId}/tasks`, init)
 
 
 function init(arrTasks) {
@@ -86,11 +89,16 @@ function init(arrTasks) {
         });
     }
 
-    function addTask(taskName) {
+    function addTask(title) {
         // adicione uma nova instancia de Task
-        arrInstancesTasks.push(new Task(taskName))
-        renderTasks()
+        const funcaoCallback = function({ title }) {
+            arrInstancesTasks.push(new Task(title))
+            renderTasks()
+        }
 
+        const taskString = JSON.stringify({title, userId})
+
+        createXMLHttpRequest("POST", urlTasks, funcaoCallback, taskString)
     }
 
     function clickedUl(e) {
@@ -145,7 +153,6 @@ function init(arrTasks) {
 
     todoAddForm.addEventListener("submit", function (e) {
         e.preventDefault()
-        console.log(itemInput.value)
         addTask(itemInput.value)
         renderTasks()
 
