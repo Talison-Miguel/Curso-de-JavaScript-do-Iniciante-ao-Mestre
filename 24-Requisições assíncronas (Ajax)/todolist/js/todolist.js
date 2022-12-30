@@ -91,14 +91,19 @@ function init(arrTasks) {
 
     function addTask(title) {
         // adicione uma nova instancia de Task
+        // essa natureza assincrona sao com as funçoes de callback no xmlHTTPRequest
         const funcaoCallback = function({ title }) {
             arrInstancesTasks.push(new Task(title))
+            console.log("dentro de funcao de callback")
             renderTasks()
         }
 
         const taskString = JSON.stringify({title, userId})
 
+        console.log("antes de createXMLHttpRequest")
         createXMLHttpRequest("POST", urlTasks, funcaoCallback, taskString)
+        console.log("depois de createXMLHttpRequest")
+
     }
 
     function clickedUl(e) {
@@ -153,8 +158,10 @@ function init(arrTasks) {
 
     todoAddForm.addEventListener("submit", function (e) {
         e.preventDefault()
+        console.log("antes de add task")
         addTask(itemInput.value)
-        renderTasks()
+        console.log("depois de add task")
+
 
         itemInput.value = ""
         itemInput.focus()
