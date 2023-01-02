@@ -1,6 +1,4 @@
 export function createXMLHttpRequest(method, url, funcaoCallback, data = null ) {
-    //esse funcaoCallback é a propia função mostrarUsuarios()
-
     const xhr = new XMLHttpRequest()
 
     xhr.open(method, url)

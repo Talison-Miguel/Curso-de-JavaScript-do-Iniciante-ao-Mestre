@@ -1,15 +1,19 @@
-import { Task } from "./Model/task.model.js"
+import { Task } from "./Model/Task.model.js"
 import { createXMLHttpRequest } from "./createXMLHttpRequest.js"
+import TasksService from "./Service/Task.service.js"
 
 const urlUsers = "http://localhost:3000/users"
 const urlTasks = "http://localhost:3000/tasks"
+
 const userId = 2
 
-createXMLHttpRequest("GET", `${urlUsers}/${userId}/tasks`, init)
+const taskService = new TasksService()
+taskService.getTasks(userId, init)
 
+
+// createXMLHttpRequest("GET", `${urlUsers}/${userId}/tasks`, init)
 
 function init(arrTasks) {
-    // console.log(createXMLHttpRequest("GET", url, init))
     // a partir de um array de objetos literais, crie um array contendo instancias de Tasks. 
     // Essa array deve chamar arrInstancesTasks
     
