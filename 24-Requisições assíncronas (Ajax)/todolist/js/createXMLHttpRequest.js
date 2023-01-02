@@ -11,10 +11,10 @@ export function createXMLHttpRequest(method, url, funcaoCallback, data = null ) 
     function verificaAjax() {   
         if(xhr.readyState === 4) {
             if(xhr.status < 400) {
-                const json = JSON.parse(xhr.responseText)
+                const dadosJson = JSON.parse(xhr.responseText)
 
                 if(typeof funcaoCallback === "function") {
-                    funcaoCallback(json)
+                    funcaoCallback(dadosJson)
                 }
             } else if(typeof funcaoCallback === "function") {
                 funcaoCallback({
