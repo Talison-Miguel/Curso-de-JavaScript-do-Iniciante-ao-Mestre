@@ -1,114 +1,47 @@
 import { Task } from "./Model/Task.model.js"
 import { createXMLHttpRequest } from "./createXMLHttpRequest.js"
-import TasksService from "./Service/Task.service.js"
+import { TasksController } from "./Controller/Tasks.controller.js"
+import { TasksView } from "./View/Tasks.view.js"
+import { TasksService } from "./Service/Task.service.js"
 
 const urlUsers = "http://localhost:3000/users"
 const urlTasks = "http://localhost:3000/tasks"
 
 const userId = 2
+const ul = document.getElementById("todo-list")
 
 const taskService = new TasksService()
+const tasksView = new TasksView(ul)
+const tasksController = new TasksController(taskService, tasksView)
+
+
+//ARMAZENAR O DOM EM VARIAVEIS
+const itemInput = document.getElementById("item-input")
+const todoAddForm = document.getElementById("todo-add")
+
+const lis = ul.getElementsByTagName("li")
+
+
+
+
 taskService.getTasks(userId, init)
 
+todoAddForm.addEventListener("submit", function (e) {
+    e.preventDefault()
+    tasksController.add(itemInput.value, userId)
 
-// createXMLHttpRequest("GET", `${urlUsers}/${userId}/tasks`, init)
+    itemInput.value = ""
+    itemInput.focus()
+});
 
-function init(arrTasks) {
+
+function init(arrInstancesTasks) {
     // a partir de um array de objetos literais, crie um array contendo instancias de Tasks. 
     // Essa array deve chamar arrInstancesTasks
-    
-    if(arrTasks.error) return
-    const arrInstancesTasks = arrTasks.map(task => {
-        const { title, completed, createdAt, updatedAt } = task
-        return new Task(title, completed, createdAt, updatedAt)
-    })
+    if(arrInstancesTasks.error) return
 
-    //ARMAZENAR O DOM EM VARIAVEIS
-    const itemInput = document.getElementById("item-input")
-    const todoAddForm = document.getElementById("todo-add")
-    const ul = document.getElementById("todo-list")
-    const lis = ul.getElementsByTagName("li")
+    tasksView.render(taskService.tasks)
 
-
-    function generateLiTask(obj) {
-
-        const li = document.createElement("li")
-        const p = document.createElement("p")
-        const checkButton = document.createElement("button")
-        const editButton = document.createElement("i")
-        const deleteButton = document.createElement("i")
-
-        li.className = "todo-item"
-
-        checkButton.className = "button-check"
-        checkButton.innerHTML = `
-            <i class="fas fa-check ${obj.completed ? "" : "displayNone"}" data-action="checkButton"></i>`
-        checkButton.setAttribute("data-action", "checkButton")
-
-        li.appendChild(checkButton)
-
-        p.className = "task-name"
-        p.textContent = obj.getTitle()
-        li.appendChild(p)
-
-        editButton.className = "fas fa-edit"
-        editButton.setAttribute("data-action", "editButton")
-        li.appendChild(editButton)
-
-
-        const containerEdit = document.createElement("div")
-        containerEdit.className = "editContainer"
-        const inputEdit = document.createElement("input")
-        inputEdit.setAttribute("type", "text")
-        inputEdit.className = "editInput"
-        inputEdit.value = obj.getTitle()
-
-        containerEdit.appendChild(inputEdit)
-        const containerEditButton = document.createElement("button")
-        containerEditButton.className = "editButton"
-        containerEditButton.textContent = "Edit"
-        containerEditButton.setAttribute("data-action", "containerEditButton")
-        containerEdit.appendChild(containerEditButton)
-        const containerCancelButton = document.createElement("button")
-        containerCancelButton.className = "cancelButton"
-        containerCancelButton.textContent = "Cancel"
-        containerCancelButton.setAttribute("data-action", "containerCancelButton")
-        containerEdit.appendChild(containerCancelButton)
-
-        li.appendChild(containerEdit)
-
-
-
-        deleteButton.className = "fas fa-trash-alt"
-        deleteButton.setAttribute("data-action", "deleteButton")
-        li.appendChild(deleteButton)
-
-        return li
-    }
-
-    function renderTasks() {
-        ul.innerHTML = ""
-        arrInstancesTasks.forEach(taskObj => {
-            ul.appendChild(generateLiTask(taskObj))
-        });
-    }
-
-    function addTask(title) {
-        // adicione uma nova instancia de Task
-        // essa natureza assincrona sao com as funçoes de callback no xmlHTTPRequest
-        const funcaoCallback = function({ title }) {
-            arrInstancesTasks.push(new Task(title))
-            console.log("dentro de funcao de callback")
-            renderTasks()
-        }
-
-        const taskString = JSON.stringify({title, userId})
-
-        console.log("antes de createXMLHttpRequest")
-        createXMLHttpRequest("POST", urlTasks, funcaoCallback, taskString)
-        console.log("depois de createXMLHttpRequest")
-
-    }
 
     function clickedUl(e) {
         const dataAction = e.target.getAttribute("data-action")
@@ -160,20 +93,7 @@ function init(arrTasks) {
         }
     }
 
-    todoAddForm.addEventListener("submit", function (e) {
-        e.preventDefault()
-        console.log("antes de add task")
-        addTask(itemInput.value)
-        console.log("depois de add task")
-
-
-        itemInput.value = ""
-        itemInput.focus()
-    });
-
+    
     ul.addEventListener("click", clickedUl)
 
-    renderTasks()
 }
-
-
