@@ -4,7 +4,7 @@
       "title": "tarefa 1",
       "completed": true,
       "createdAt": 1672777137011,
-      "updatedAt": null,
+      "updatedAt": 1672839502636,
       "userId": 2,
       "id": 1
     },
@@ -12,7 +12,7 @@
       "title": "tarefa 2",
       "completed": false,
       "createdAt": 1672753154443,
-      "updatedAt": null,
+      "updatedAt": 1672839503056,
       "userId": "2",
       "id": 2
     },
@@ -20,17 +20,9 @@
       "title": "tarefa 3",
       "completed": false,
       "createdAt": 1672753322726,
-      "updatedAt": null,
+      "updatedAt": 1672839503482,
       "userId": "2",
       "id": 3
-    },
-    {
-      "title": "tarefa 4",
-      "completed": false,
-      "createdAt": 1672774949814,
-      "updatedAt": null,
-      "id": 4,
-      "userId": "2"
     }
   ],
   "users": [

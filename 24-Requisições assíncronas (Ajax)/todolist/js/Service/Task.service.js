@@ -39,24 +39,22 @@ export class TasksService {
         createXMLHttpRequest("DELETE", `${urlTasks}/${id}`, fn)
     }
 
-    update(id, cb, userId, title) {
-        const task = this.tasks[id - 1]
-        task.title = title
+    update(task, cb, userId) {
+        task.updatedAt = Date.now()
 
         const fn = () => {
             this.getTasks(userId, cb)
         }
 
-        createXMLHttpRequest("PATCH", `${urlTasks}/${id}`, fn, JSON.stringify(task))
+        createXMLHttpRequest("PATCH", `${urlTasks}/${task.id}`, fn, JSON.stringify(task))
     }
 
     check(id, cb, userId) {
         const task = this.tasks[id - 1]
-        if(task.completed === false) {
-            task.completed = true
-        } else {
-            task.completed = false
-        }
+
+        //inverte, true/false com o click
+        task.completed = !task.completed
+        task.updatedAt = Date.now()
 
         const fn = () => {
             this.getTasks(userId, cb)
