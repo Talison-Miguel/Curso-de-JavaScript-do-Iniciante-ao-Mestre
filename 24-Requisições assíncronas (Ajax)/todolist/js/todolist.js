@@ -73,8 +73,8 @@ function init(arrInstancesTasks) {
             containerEditButton: function () {
                 const id = currentLi.getAttribute("data-id")
                 const title = currentLi.querySelector(".editInput").value
-                tasksController.update(title, userId, id)
-            },
+                tasksController.update({title, id}, userId)
+            },  
             containerCancelButton: function () {
                 currentLi.querySelector(".editContainer").removeAttribute("style")
                 currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].getTitle()

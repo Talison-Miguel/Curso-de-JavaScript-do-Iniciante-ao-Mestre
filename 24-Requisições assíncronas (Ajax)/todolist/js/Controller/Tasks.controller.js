@@ -15,8 +15,8 @@ export class TasksController {
         this.service.remove(id, () => this.view.render(this.service.tasks), userId)
     }
 
-    update(title, userId, id) {
-        this.service.update(id, () => this.view.render(this.service.tasks), userId, title)
+    update(task, userId) {
+        this.service.update(task, () => this.view.render(this.service.tasks), userId)
     }
 
     check(userId, id) {
