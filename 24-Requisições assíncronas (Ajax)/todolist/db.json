@@ -1,69 +1,36 @@
 {
   "tasks": [
     {
-      "title": "tarefa 1 editada com patch",
-      "completed": "false",
-      "createdAt": "",
-      "updatedAt": "",
-      "userId": 1,
+      "title": "tarefa 1",
+      "completed": true,
+      "createdAt": 1672777137011,
+      "updatedAt": null,
+      "userId": 2,
       "id": 1
     },
     {
       "title": "tarefa 2",
-      "completed": "false",
-      "createdAt": "",
-      "updatedAt": "",
-      "userId": 2,
+      "completed": false,
+      "createdAt": 1672753154443,
+      "updatedAt": null,
+      "userId": "2",
       "id": 2
     },
     {
       "title": "tarefa 3",
-      "completed": "false",
-      "createdAt": "",
-      "updatedAt": "",
-      "userId": 2,
+      "completed": false,
+      "createdAt": 1672753322726,
+      "updatedAt": null,
+      "userId": "2",
       "id": 3
     },
     {
-      "title": "tarefa do amancio",
-      "userId": 3,
-      "id": 4
-    },
-    {
-      "title": "tarefa 5",
-      "userId": 2,
-      "id": 6
-    },
-    {
-      "title": "tarefa nova",
-      "userId": 2,
-      "id": 7
-    },
-    {
-      "title": "new task",
-      "userId": 2,
-      "id": 8
-    },
-    {
-      "title": "nova task",
-      "userId": 2,
-      "id": 9
-    },
-    {
-      "title": "add",
+      "title": "tarefa 4",
       "completed": false,
-      "createdAt": 1672670217178,
+      "createdAt": 1672774949814,
       "updatedAt": null,
-      "userId": "2",
-      "id": 10
-    },
-    {
-      "title": "new task",
-      "completed": false,
-      "createdAt": 1672690550199,
-      "updatedAt": null,
-      "userId": "2",
-      "id": 11
+      "id": 4,
+      "userId": "2"
     }
   ],
   "users": [

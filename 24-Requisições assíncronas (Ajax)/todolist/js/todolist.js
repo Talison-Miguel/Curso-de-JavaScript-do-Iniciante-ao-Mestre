@@ -67,24 +67,21 @@ function init(arrInstancesTasks) {
 
             },
             deleteButton: function () {
-                arrInstancesTasks.splice(currentLiIndex, 1)
-                renderTasks()
-
+                const id = currentLi.getAttribute("data-id")
+                tasksController.remove(id, userId)
             },
             containerEditButton: function () {
-                const val = currentLi.querySelector(".editInput").value
-                arrInstancesTasks[currentLiIndex].setTitle(val)
-                renderTasks()
+                const id = currentLi.getAttribute("data-id")
+                const title = currentLi.querySelector(".editInput").value
+                tasksController.update(title, userId, id)
             },
             containerCancelButton: function () {
                 currentLi.querySelector(".editContainer").removeAttribute("style")
                 currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].getTitle()
             },
             checkButton: function () {
-
-                // DEVE USAR O MÉTODO toggleDone do objeto correto
-                arrInstancesTasks[currentLiIndex].toggleDone()
-                renderTasks()
+                const id = currentLi.getAttribute("data-id")
+                tasksController.check(userId, id)
             }
         }
 
