@@ -1,8 +1,6 @@
 import { createXMLHttpRequest } from "../createXMLHttpRequest.js"
 import { Task } from "../Model/Task.model.js"   
-
-const urlUsers = "http://localhost:3000/users"
-const urlTasks = "http://localhost:3000/tasks"
+import { urlUsers, urlTasks } from "../config.js"
 
 export class TasksService {
     constructor() {
@@ -10,9 +8,6 @@ export class TasksService {
     }
 
     add(task, cb, userId) {
-        if(!task instanceof Task) {
-            throw TypeError("task must be an instace of Task")
-        }
         const fn = () => {
             this.getTasks(userId, cb)
         }
@@ -21,8 +16,8 @@ export class TasksService {
 
     getTasks(userId, cb) {
         //ja preenchendo as tarefas por aqui mesmo nessa funçao
-        const fn = (dados) => {
-            this.tasks = dados.map(task => {
+        const fn = (arrTasks) => {
+            this.tasks = arrTasks.map(task => {
                 const { title, completed, createdAt, updatedAt, id } = task
                 return new Task(title, completed, createdAt, updatedAt, id)
             })
@@ -35,7 +30,6 @@ export class TasksService {
         const fn = () => {
             this.getTasks(userId, cb)
         }
-
         createXMLHttpRequest("DELETE", `${urlTasks}/${id}`, fn)
     }
 
@@ -45,7 +39,6 @@ export class TasksService {
         const fn = () => {
             this.getTasks(userId, cb)
         }
-
         createXMLHttpRequest("PATCH", `${urlTasks}/${task.id}`, fn, JSON.stringify(task))
     }
 
