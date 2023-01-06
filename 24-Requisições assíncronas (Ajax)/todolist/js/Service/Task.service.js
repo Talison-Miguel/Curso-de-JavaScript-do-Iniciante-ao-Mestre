@@ -1,4 +1,4 @@
-import { createXMLHttpRequest } from "../createXMLHttpRequest.js"
+import { createPromise } from "../createPromise.js"
 import { Task } from "../Model/Task.model.js"   
 import { urlUsers, urlTasks } from "../config.js"
 
@@ -7,52 +7,63 @@ export class TasksService {
         this.tasks = []
     }
 
-    add(task, cb, userId) {
-        const fn = () => {
-            this.getTasks(userId, cb)
-        }
-        createXMLHttpRequest("POST", `${urlUsers}/${userId}/tasks`, fn, JSON.stringify(task))
+    add(task, cb, error, userId) {
+        createPromise("Post", `${urlUsers}/${userId}/tasks`, JSON.stringify(task))
+        .then(() => this.getTasks(userId))
+        .then(() => cb())
+        .catch(err => error(err))
     }
 
-    getTasks(userId, cb) {
+    getTasks(userId, sucess, erro) {
         //ja preenchendo as tarefas por aqui mesmo nessa funçao
         const fn = (arrTasks) => {
             this.tasks = arrTasks.map(task => {
                 const { title, completed, createdAt, updatedAt, id } = task
                 return new Task(title, completed, createdAt, updatedAt, id)
             })
-            if(typeof cb === "function") cb(this.tasks)
+            if(typeof sucess === "function") sucess(this.tasks)
+            return this.tasks
         }
-        createXMLHttpRequest("GET", `${urlUsers}/${userId}/tasks`, fn)
+        //then _ tipo um entao, oque vai fazer com a resposta da promise
+        //catch _ se der erro, retorna essa funçao
+        return createPromise("GET", `${urlUsers}/${userId}/tasks`)
+        .then(response => {
+            return fn(response)
+        })
+        .catch(error => {
+            if(typeof erro === "function") {
+                return erro(error.message)
+            }
+            throw Error(error.message)
+        })
     }
 
-    remove(id, cb, userId) {
-        const fn = () => {
-            this.getTasks(userId, cb)
-        }
-        createXMLHttpRequest("DELETE", `${urlTasks}/${id}`, fn)
+    remove(id, cb, error, userId) {
+        createPromise("DELETE", `${urlTasks}/${id}`)
+            .then(() => this.getTasks(userId))
+            .then(() => cb())
+            .catch(err => error(err.message))
     }
 
-    update(task, cb, userId) {
+    update(task, cb, error, userId) {
         task.updatedAt = Date.now()
-
-        const fn = () => {
-            this.getTasks(userId, cb)
-        }
-        createXMLHttpRequest("PATCH", `${urlTasks}/${task.id}`, fn, JSON.stringify(task))
+        
+        createPromise("PATCH", `${urlTasks}/${task.id}`, JSON.stringify(task))
+            .then(() => this.getTasks(userId))
+            .then(() => cb())
+            .catch(err => error(err.message))
     }
 
-    check(id, cb, userId) {
+    check(id, cb, error, userId) {
         const task = this.tasks[id - 1]
 
         //inverte, true/false com o click
         task.completed = !task.completed
         task.updatedAt = Date.now()
 
-        const fn = () => {
-            this.getTasks(userId, cb)
-        }
-
-        createXMLHttpRequest("PATCH", `${urlTasks}/${id}`, fn, JSON.stringify(task))
+        createPromise("PATCH", `${urlTasks}/${id}`, JSON.stringify(task))
+        .then(() => this.getTasks(userId))
+        .then(() => cb())
+        .catch(err => error(err.message))
     }
 }

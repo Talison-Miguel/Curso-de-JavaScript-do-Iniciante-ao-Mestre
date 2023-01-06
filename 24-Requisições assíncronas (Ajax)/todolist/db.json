@@ -2,9 +2,9 @@
   "tasks": [
     {
       "title": "tarefa 1",
-      "completed": false,
+      "completed": true,
       "createdAt": 1672777137011,
-      "updatedAt": 1672873527406,
+      "updatedAt": 1672954376897,
       "userId": 2,
       "id": 1
     },
@@ -12,7 +12,7 @@
       "title": "tarefa 2",
       "completed": false,
       "createdAt": 1672753154443,
-      "updatedAt": 1672839503056,
+      "updatedAt": 1672954095787,
       "userId": "2",
       "id": 2
     },
@@ -20,7 +20,7 @@
       "title": "tarefa 3",
       "completed": false,
       "createdAt": 1672753322726,
-      "updatedAt": 1672839503482,
+      "updatedAt": 1672954128669,
       "userId": "2",
       "id": 3
     }

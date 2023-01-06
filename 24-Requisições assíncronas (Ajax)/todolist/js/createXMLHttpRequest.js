@@ -1,4 +1,4 @@
-export function createXMLHttpRequest(method, url, funcaoCallback, data = null ) {
+export function createXMLHttpRequest(method, url, sucess, error, data = null ) {
     const xhr = new XMLHttpRequest()
 
     xhr.open(method, url)
@@ -13,15 +13,11 @@ export function createXMLHttpRequest(method, url, funcaoCallback, data = null ) 
             if(xhr.status < 400) {
                 const dadosJson = JSON.parse(xhr.responseText)
 
-                if(typeof funcaoCallback === "function") {
-                    funcaoCallback(dadosJson)
+                if(typeof sucess === "function") {
+                    sucess(dadosJson)
                 }
-            } else if(typeof funcaoCallback === "function") {
-                funcaoCallback({
-                    error: true,
-                    status: xhr.status,
-                    message: 'Algo deu errado com a conexão'
-                })
+            } else if(typeof error === "function") {
+                error('Algo deu errado com a conexão')
             }
         }
     }
