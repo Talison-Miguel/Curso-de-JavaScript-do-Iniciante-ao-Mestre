@@ -1,4 +1,4 @@
-import { createPromise } from "../createPromise.js"
+import { createFetch } from "../createFetch.js"
 import { Task } from "../Model/Task.model.js"   
 import { urlUsers, urlTasks } from "../config.js"
 
@@ -8,7 +8,7 @@ export class TasksService {
     }
 
     add(task, cb, error, userId) {
-        createPromise("Post", `${urlUsers}/${userId}/tasks`, JSON.stringify(task))
+        createFetch("POST", `${urlUsers}/${userId}/tasks`, JSON.stringify(task))
         .then(() => this.getTasks(userId))
         .then(() => cb())
         .catch(err => error(err))
@@ -26,7 +26,7 @@ export class TasksService {
         }
         //then _ tipo um entao, oque vai fazer com a resposta da promise
         //catch _ se der erro, retorna essa funçao
-        return createPromise("GET", `${urlUsers}/${userId}/tasks`)
+        return createFetch("GET", `${urlUsers}/${userId}/tasks`)
         .then(response => {
             return fn(response)
         })
@@ -39,7 +39,7 @@ export class TasksService {
     }
 
     remove(id, cb, error, userId) {
-        createPromise("DELETE", `${urlTasks}/${id}`)
+        createFetch("DELETE", `${urlTasks}/${id}`)
             .then(() => this.getTasks(userId))
             .then(() => cb())
             .catch(err => error(err.message))
@@ -48,7 +48,7 @@ export class TasksService {
     update(task, cb, error, userId) {
         task.updatedAt = Date.now()
         
-        createPromise("PATCH", `${urlTasks}/${task.id}`, JSON.stringify(task))
+        createFetch("PATCH", `${urlTasks}/${task.id}`, JSON.stringify(task))
             .then(() => this.getTasks(userId))
             .then(() => cb())
             .catch(err => error(err.message))
@@ -61,7 +61,7 @@ export class TasksService {
         task.completed = !task.completed
         task.updatedAt = Date.now()
 
-        createPromise("PATCH", `${urlTasks}/${id}`, JSON.stringify(task))
+        createFetch("PATCH", `${urlTasks}/${id}`, JSON.stringify(task))
         .then(() => this.getTasks(userId))
         .then(() => cb())
         .catch(err => error(err.message))
