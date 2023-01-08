@@ -54,9 +54,9 @@ export class TasksService {
         } catch (err) {
             error(err.message)
         }
-            // .then(() => this.getTasks(userId))
-            // .then(() => cb())
-            // .catch(err => error(err.message))
+        // .then(() => this.getTasks(userId))
+        // .then(() => cb())
+        // .catch(err => error(err.message))
     }
 
     update(task, cb, error, userId) {
