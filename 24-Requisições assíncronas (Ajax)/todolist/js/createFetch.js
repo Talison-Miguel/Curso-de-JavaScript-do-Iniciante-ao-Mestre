@@ -1,7 +1,5 @@
 export function createFetch(method, url, data = null ) {
     function handleError(response) {
-        console.log(response)
-
         if(!response.ok) {
             throw  Error(response.status + ": " + response.statusText)
         }

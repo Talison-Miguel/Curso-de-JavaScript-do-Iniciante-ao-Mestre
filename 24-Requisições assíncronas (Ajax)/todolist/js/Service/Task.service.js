@@ -14,8 +14,17 @@ export class TasksService {
         .catch(err => error(err))
     }
 
-    getTasks(userId, sucess, erro) {
-        //ja preenchendo as tarefas por aqui mesmo nessa funçao
+    async getTasks(userId, sucess, erro) {
+        console.log("teste")
+        //await é tipo pra esperar
+        const teste = await createFetch("GET", `${urlUsers}/${userId}/tasks`)
+            .then(response => {
+                return response
+            })
+        console.log(teste)
+        console.log("teste 2")
+
+
         const fn = (arrTasks) => {
             this.tasks = arrTasks.map(task => {
                 const { title, completed, createdAt, updatedAt, id } = task
@@ -24,25 +33,30 @@ export class TasksService {
             if(typeof sucess === "function") sucess(this.tasks)
             return this.tasks
         }
-        //then _ tipo um entao, oque vai fazer com a resposta da promise
-        //catch _ se der erro, retorna essa funçao
+
         return createFetch("GET", `${urlUsers}/${userId}/tasks`)
-        .then(response => {
-            return fn(response)
-        })
-        .catch(error => {
-            if(typeof erro === "function") {
-                return erro(error.message)
-            }
-            throw Error(error.message)
-        })
+            .then(response => {
+                return fn(response)
+            })
+            .catch(error => {
+                if(typeof erro === "function") {
+                    return erro(error.message)
+                }
+                throw Error(error.message)
+            })
     }
 
-    remove(id, cb, error, userId) {
-        createFetch("DELETE", `${urlTasks}/${id}`)
-            .then(() => this.getTasks(userId))
-            .then(() => cb())
-            .catch(err => error(err.message))
+    async remove(id, cb, error, userId) {
+        try {
+            createFetch("DELETE", `${urlTasks}/${id}`)
+            await this.getTasks(userId)
+            cb()
+        } catch (err) {
+            error(err.message)
+        }
+        // .then(() => this.getTasks(userId))
+        // .then(() => cb())
+        // .catch(err => error(err.message))
     }
 
     update(task, cb, error, userId) {
