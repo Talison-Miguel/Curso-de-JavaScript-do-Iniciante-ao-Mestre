@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        let str = 'hoje é 26/02/2018 e amanha será 27/02/18. Meu aniversario é 1/01';
+
+        const regex = /(\d{1,2})\//
+        const regexG = /(\d{1,2})\//g
+
+        console.log(regex.test(str))
+
+        // .search(regex) _ retorna a posiçao que encontrou a string
+        console.log(str.search(regex))
+
+        // match _ retorna uma correspondência entre uma string com uma expressão regular.
+        console.log(str.match(regexG))
+ 
+    </script>
+</body>
+
+</html>
