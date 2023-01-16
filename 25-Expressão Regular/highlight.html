@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Curso Javascript Completo </title>
+    <meta charset="utf-8">
+
+    <style>
+        .hgt {
+            font-weight: normal;
+            color: white;
+            background-color: rgb(99, 0, 0);
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Curso Javascript Completo</h1>
+
+    <input type="text" name="" class="input">
+    <p>1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud <b>exercitation ullamco laboris</b> nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>2 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis quis qui, numquam eius porro corrupti laborum
+        delectus perspiciatis repudiandae ullam.</p>
+    <p>3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, quas?</p>
+
+
+</body>
+
+<script>
+
+    const paragrafsOrigins = Array.from(document.querySelectorAll("p")).map(p => p.innerHTML)
+    
+    function highligthText(e) {
+        const valueInput = e.target.value
+        Array.from(document.querySelectorAll("p")).map((paragraf, i) => {
+            const paragrafHtml = paragrafsOrigins[i]
+            if(valueInput) {
+                const regex = new RegExp(`${valueInput}`, 'gi')
+                const htmlReplaced = paragrafHtml.replace(regex, result => {
+                    return `<span class="hgt">${result}</span>`
+                }) 
+                console.log(htmlReplaced)
+                paragraf.innerHTML = htmlReplaced
+            } else {
+                paragraf.innerHTML = paragrafHtml
+            }
+            
+        })
+
+
+    }
+
+
+
+    window.addEventListener("input", highligthText)
+
+    
+
+</script>
+
+
+</html>
