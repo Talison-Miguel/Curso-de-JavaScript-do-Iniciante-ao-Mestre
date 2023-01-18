@@ -3,3 +3,4 @@ import {teste as teste2} from './modules/mod_esm2.mjs'
 
 console.log(teste)
 console.log(teste2)
+console.log(teste.indexOf)
