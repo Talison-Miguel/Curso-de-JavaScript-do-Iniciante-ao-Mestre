@@ -29,5 +29,5 @@ const getAdress = async (cep) => {
     }
 }
 
-const endereco = getAdress("03136-050")
+const endereco = getAdress("031.362-050")
 console.log(endereco)
