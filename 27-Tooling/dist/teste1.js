@@ -61,5 +61,5 @@ var getAdress = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var endereco = getAdress("03136-050");
+var endereco = getAdress("36909-700");
 console.log(endereco);
