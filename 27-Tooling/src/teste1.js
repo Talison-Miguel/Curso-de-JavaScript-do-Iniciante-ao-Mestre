@@ -2,6 +2,10 @@
 //npx babel src -d dist -w
 //npx babel src -d dist --presets=@babel/env -w
 
+//axios _ vc passa axios.method(url), isso depois de importar, e muda de .json() para .data  a reposta
+
+import axios from 'axios'
+
 const teste1 = 'Teste babel'
 
 const arrowFn = n => n * n
@@ -20,14 +24,12 @@ const getAdress = async (cep) => {
     let url = `http://viacep.com.br/ws/${cep}/json/`
 
     try {
-        const resposta = await fetch(url)
-        if(!resposta.ok) throw Error("Invalid postal code!")
-        const json = await resposta.json()
+        const resposta = await axios.get(url)
+        const json = resposta.data
         return json
     } catch(e) {
         throw e
     }
 }
 
-const endereco = getAdress("36909-700")
-console.log(endereco)
+getAdress("36909-700").then(data => console.log(data))
