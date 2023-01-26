@@ -18,3 +18,5 @@ let daniele: UserAdm = {
     isAdmin: true,
     level: "teacher"
 }
+
+export default 1
