@@ -73,3 +73,27 @@ doguinho.mostrarDetalhes()
 doguinho.mostrarCategoria()
 doguinho.nome = "Novo nome do toto"
 console.log(doguinho.nome, "toto")
+
+
+
+console.log('----------------------------')
+
+class Cliente {
+    private readonly _listaAnimais: Animal[] = []
+    private _tempListaAnimais: Animal[] = []
+
+    addAnimais(...animais: Animal[]) {
+        this._listaAnimais.push(...animais)
+        this._tempListaAnimais.length = 0
+        this._tempListaAnimais = [...this._listaAnimais]
+    }
+
+    get listaAnimais() {
+        return [...this._tempListaAnimais]  
+    }
+}
+
+const talison = new Cliente()
+talison.addAnimais(doguinho, gatinho)
+talison.listaAnimais.length = 0
+console.log(talison)
