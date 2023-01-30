@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ts": "npx ts-node-dev --respawn  ./src/index.ts"
+    "ts": "npx ts-node-dev --respawn  ./src/interface.ts"
   },
   "keywords": [],
   "author": "",
