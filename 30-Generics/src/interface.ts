@@ -43,16 +43,21 @@ const step5: ActionIProps = {
 
 const arrHistoryAction: Array<ActionIProps> = []
 
-const addAction = <Tipo extends ActionIProps>(obj: Tipo) => {
+// const addAction = <Tipo extends {action: string, timesTemp: number, id: number}>(obj: Tipo) => {
+const addAction = <Tipo extends ActionIProps & {id: number}>(obj: Tipo) => {
     console.log('addAction')
     console.log(obj)
-    arrHistoryAction.push(obj)
+    const result = {
+        ...obj,
+        _id: obj.id + "_" + obj.timesTemp
+    }
+    arrHistoryAction.push(result)
 }
 
 
 addAction({
     action: 'delete',
-    timesTemp: 123,
+    timesTemp: 12322,
     teste: 'ola',
     id: 1
 } )
