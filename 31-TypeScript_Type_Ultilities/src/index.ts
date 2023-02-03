@@ -25,3 +25,33 @@ const square3 = updateSquare(square, {x: 70})
 console.log(square)
 // console.log(square2)
 console.log(square3, '__')
+
+
+console.log('------------------------')
+
+interface User {
+    readonly name: string,
+    email: string,
+    id?: number
+}
+
+type UserGet = Required<User>
+
+type UserPatch = Partial<User>
+const maria : UserPatch = {id: 2}
+
+
+type UserRead = Readonly<User>
+const daniel: User = {
+    name: 'daniel',
+    email: 'danie.@server'
+}
+
+daniel.id = 4
+
+console.log(daniel)
+
+
+console.log('------------------------')
+
+
