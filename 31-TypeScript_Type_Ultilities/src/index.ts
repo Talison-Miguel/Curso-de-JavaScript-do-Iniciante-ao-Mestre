@@ -126,3 +126,68 @@ minhaFuncao2(26)
 
 type NumberOrNever<T> = T extends number ? number : never
 // const teste: NumberOrNever<boolean> = null 
+
+
+
+//keyof
+// type OnePropertyOfSquare = "x","u","width","heigth"
+type OnePropertyOfSquare = keyof Square
+let onePropertyOfSquare: OnePropertyOfSquare = "x"
+
+
+
+
+//Mapped Types
+type Props = "x" | "y" | "z"
+// type MappedFromProps = {
+//     "x": number,
+//     "y": number,
+//     "z": number
+// }
+
+type MappedFromProps<Type extends string | number | symbol> = {
+    [P in Type]: P
+}
+
+type MyMappedTypes = MappedFromProps<Props>
+
+type MappedFromProps2<Type> = {
+    readonly [P in keyof Type]: Type[P]
+} 
+type Teste = MappedFromProps2<{a: "b", b: "b"}>
+
+
+
+
+//Lookup Types prop[type]
+type BankAcount = {
+    id: number,
+    name: string,
+    count: {
+        agency: number,
+        code: number,
+        digit: number
+    }
+}
+
+type Id = BankAcount["id"]
+type Count = BankAcount["count"]
+type Digit = BankAcount["count"]["digit"]
+
+
+//typeof
+const myCount: BankAcount = {
+    id: 1,
+    name: "talison",
+    count: {
+        agency: 123,
+        code: 54,
+        digit: 23
+    }
+}
+
+type TypeOfMyCount = typeof myCount
+type TypeOfMyCountId = typeof myCount.id
+
+let minhaString = "ola mundo"
+let string2: typeof minhaString
