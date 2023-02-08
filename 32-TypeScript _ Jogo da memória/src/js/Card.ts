@@ -1,4 +1,4 @@
-interface CardProps {
+export interface CardProps {
     id: string
     description: string
     img: string
@@ -17,6 +17,11 @@ const uniqueCards: CardProps[] = [
 
 const cardsOriginais: CardProps[] = []
 
+function shuffleNumber(min: number, max: number) {
+    const num = Math.random() * (max - min + 1) + min
+    return parseInt(num.toString())
+}
+
 uniqueCards.forEach((card) => {
     cardsOriginais.push({ ...card})
     cardsOriginais.push({ ...card})
@@ -24,5 +29,14 @@ uniqueCards.forEach((card) => {
 });
 
 const cards: CardProps[] = []
+
+const len = cardsOriginais.length
+
+while(cards.length < len) {
+    let shuffled = shuffleNumber(0, cardsOriginais.length - 1)
+    const item = cardsOriginais.splice(shuffled, 1)
+    cards.push(item[0])
+}
+
 
 export {cards}
