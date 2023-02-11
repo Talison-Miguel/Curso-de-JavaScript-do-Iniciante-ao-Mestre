@@ -1,4 +1,5 @@
 import { PubSub } from "./PubSub"
+import { OutputProps } from "./PubSub"
 
 const testeEvent1 = document.querySelector('#testEvent') as HTMLElement
 const testeEvent2 = document.querySelector('#testEvent2') as HTMLElement
@@ -40,22 +41,22 @@ document.addEventListener('click', eventFire)
 
 /* ______________________ */
 /* PubSub Designer Patter */
-const pubsub = document.getElementById('pubsub')
+const pubsub = document.getElementById('pubsub') as HTMLElement
 
-function teste(data) {
-    console.log('teste', data)
+function teste(data?: OutputProps) {
+    console.log('Função teste: ', data)
+    pubsub.textContent = `data: ${data?.data} ___ type: ${data?.type}`
+    
 }
 
-PubSub.subscriber("EventTest", teste)
-
+PubSub.subscriber("EventTest1", teste)
 PubSub.subscriber("EventTest2", teste)
 PubSub.subscriber("EventTest3", teste)
 
-PubSub.unsubscriber("EventTest2", teste)
+PubSub.unsubscriber("EventTest3", teste)
 
 console.log(PubSub.subscribers)
-console.log(PubSub.subscribers)
 
-PubSub.publish('EventTest', 20)
-PubSub.publish('EventTest', 'valor do data 2')
+PubSub.publish('EventTest1', `Dados: ${1}`)
+PubSub.publish('EventTest2', `Dados: ${2}`)
 
