@@ -10,7 +10,7 @@ const path = require('path')
 
 console.log("_______arquivo lido_______")
 // fs.readdir __ le toda pasta
-const filemd = fs.readFile('./files/README.MD', 'UTF-8', (err, content) => {
+fs.readFile('./files/README.MD', 'UTF-8', (err, content) => {
     if(err) {
         throw err
     }
@@ -19,8 +19,7 @@ const filemd = fs.readFile('./files/README.MD', 'UTF-8', (err, content) => {
 })
 
 
-
-const fileimg = fs.readFile('./files/banner.jpg', (err, files) => {
+fs.readFile('./files/banner.jpg', (err, files) => {
     if(err) {
         throw err
     }
