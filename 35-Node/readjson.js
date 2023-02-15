@@ -8,3 +8,4 @@ fs.readFile("dados/dados.json", "UTF-8", (err, content) => {
 
 console.log('-------')
 console.log(dado[0].lastname)
+
