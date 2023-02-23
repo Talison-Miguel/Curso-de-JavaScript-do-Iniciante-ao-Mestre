@@ -11,7 +11,7 @@ app.get("/tasks", (request, response) => {
 })
 
 app.post("/tasks", (request, response) => {
-    response.send(`POST para /tasks`)
+    response.send(`POST para /tasks.`)
     console.log(request.body)
 })
 
