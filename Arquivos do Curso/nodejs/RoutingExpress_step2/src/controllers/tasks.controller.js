@@ -45,21 +45,11 @@ exports.getById = async (req, res) => {
     } catch (e) {
         res.status(500).send({ message: "erros 500", err: e })
     }
-
-
 }
 
 exports.put = async (req, res) => {
     const { title, completed, createdAt, updatedAt, userId } = req.body
-
-    const newTask = {
-        title,
-        completed,
-        createdAt,
-        updatedAt,
-        id: parseInt(req.params.id),
-        userId
-    }
+    const newTask = { title, completed, createdAt, updatedAt, id: parseInt(req.params.id), userId }
 
     try {
         const data = await repository.put(newTask, req.params.id)
@@ -68,15 +58,11 @@ exports.put = async (req, res) => {
         } else {
             res.status(404).end()
         }
-
     } catch (e) {
         res.status(500).send({ message: "erros 500", err: e })
     }
 
-
-
     res.status(200).send(newTask)
-
 }
 
 exports.patch = async (req, res) => {
