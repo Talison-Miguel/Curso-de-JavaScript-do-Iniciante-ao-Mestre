@@ -1,69 +1,81 @@
 const repository = require('./../repository/tasks_repository')
 const tasks = require("./../../data/tasks.json")
 
-exports.get = async (request, response) => {
+exports.get = async (req, res) => {
     try {
         let tasks = await repository.get()
-        response.status(200).send(tasks)
-    } catch (error) {
-        response.status(500).send({
-            message: "Error 500", 
-            err: error
-        })
+        res.status(200).send(tasks)
+    } catch (e) {
+        res.status(500).send({ message: "erros 500", err: e })
     }
+
 }
 
-exports.post = async (request, response) => {
-    const { title, userId } = request.body
+exports.post = async (req, res) => {
+    const { title, userId } = req.body
+
     const newTask = {
-        title: title,
+        title,
         completed: false,
         createdAt: Date.now(),
         updatedAt: null,
-        userId: userId,
+        userId
     }
+
+    // tasks.push(newTask)
+    try {
+        const data = await repository.post(newTask)
+        res.status(201).send(data)
+    } catch (e) {
+        res.status(500).send({ message: "erros 500", err: e })
+    }
+
+}
+
+exports.getById = async (req, res) => {
+    // res.send(tasks.find(task => task.id === parseInt(req.params.id)))
+    try {
+        const data = await repository.get(parseInt(req.params.id))
+        if (data) {
+            res.status(200).send(data)
+        } else {
+            res.status(404).end()
+        }
+
+    } catch (e) {
+        res.status(500).send({ message: "erros 500", err: e })
+    }
+}
+
+exports.put = async (req, res) => {
+    const { title, completed, createdAt, updatedAt, userId } = req.body
+    const newTask = { title, completed, createdAt, updatedAt, id: parseInt(req.params.id), userId }
 
     try {
-        const data = await repository.post
-        tasks.push(data)
-        response.status(201).send(newTask)
-    } catch (error) {
-        response.status(500).send({
-            message: "Error 500", 
-            err: error
-        })
+        const data = await repository.put(newTask, req.params.id)
+        if (data) {
+            res.status(200).send(data)
+        } else {
+            res.status(404).end()
+        }
+    } catch (e) {
+        res.status(500).send({ message: "erros 500", err: e })
     }
-}
 
-exports.getById = async (request, response) => {
-    response.send(tasks.find(task => task.id === parseInt(request.params.id)))
-}
-
-exports.put = async (request, reponse) => {
-    const  { title, completed, createdAt, updatedAt, id, userId } = request.body
-    const newTask = { title, completed, createdAt, updatedAt, id, userId }
-    const taskIndex = tasks.findIndex( task => task.id === parseInt(request.params.id))
-    
-    tasks.splice(taskIndex, 1, newTask)
-    response.send(newTask)
+    res.status(200).send(newTask)
 }
 
 exports.patch = async (request, response) => {
     const { title, completed, userId } = request.body
-    const taskById = tasks.find( task => task.id === parseInt(request.params.id))
-    const taskIndex = tasks.findIndex( task => task.id === parseInt(request.params.id))
-
-    const updatedAt = Date.now()
-    const taskUpdated = { title, completed, userId, updatedAt }
-
-    for (let prop in taskUpdated) {
-        if(typeof taskUpdated[prop] === "undefined") delete taskUpdated[prop]
+    
+    const data = repository.path({title, completed, userId}, request.params.id)
+    try {
+        response.status(200).send(data)
+    } catch (error) {
+        res.status(500).send({ message: "erros 500", err: e })
     }
-
-    const editTask = { ...taskById, ...taskUpdated }
-
-    tasks.splice(taskIndex, 1, editTask)
-    response.send(editTask)
+    
+    
 }
 
 exports.delete = async (request, response) => {
