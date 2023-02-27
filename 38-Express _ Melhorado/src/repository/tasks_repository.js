@@ -44,3 +44,10 @@ exports.path = async (data, id) => {
 
     return editTask
 }
+
+exports.delete = async (id) => {
+    const taskIndex = tasks.findIndex( task => task.id === parseInt(id))
+    const deleteTask = tasks.splice(taskIndex, 1)
+
+    return deleteTask
+}

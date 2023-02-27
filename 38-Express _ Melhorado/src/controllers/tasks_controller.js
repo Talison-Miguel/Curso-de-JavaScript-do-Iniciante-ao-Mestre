@@ -79,8 +79,13 @@ exports.patch = async (request, response) => {
 }
 
 exports.delete = async (request, response) => {
-    const taskIndex = tasks.findIndex( task => task.id === parseInt(request.params.id))
-    const deleteTask = tasks.splice(taskIndex, 1)
+    try {
+        const data = await repository.delete(request.params.id)
 
-    response.send(deleteTask)
+        response.status(200).send(data)
+    } catch (error) {
+        res.status(500).send({ message: "erros 500", err: e })
+    }
+
+    
 }
