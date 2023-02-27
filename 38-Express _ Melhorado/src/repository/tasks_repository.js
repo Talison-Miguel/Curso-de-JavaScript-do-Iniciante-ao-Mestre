@@ -27,13 +27,17 @@ exports.put = async (data, id) => {
     return data
 }
 
-exports.path = async (data, id) => {
+exports.patch = async (data, id) => {
     const { title, completed, userId } = data
     const taskById = tasks.find( task => task.id === parseInt(id))
     const taskIndex = tasks.findIndex( task => task.id === parseInt(id))
 
     const updatedAt = Date.now()
     const taskUpdated = { title, completed, userId, updatedAt }
+
+    if (taskIndex < 0) {
+        return null
+    }
 
     for (let prop in taskUpdated) {
         if(typeof taskUpdated[prop] === "undefined") delete taskUpdated[prop]
@@ -47,6 +51,11 @@ exports.path = async (data, id) => {
 
 exports.delete = async (id) => {
     const taskIndex = tasks.findIndex( task => task.id === parseInt(id))
+
+    if (taskIndex < 0) {
+        return null
+    }
+
     const deleteTask = tasks.splice(taskIndex, 1)
 
     return deleteTask
