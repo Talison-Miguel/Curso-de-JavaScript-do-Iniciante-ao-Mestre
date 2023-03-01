@@ -1,3 +1,6 @@
+const mongoose = require("mongoose")
+const Task = require("./../models/task.model")
+
 const tasks = require('./../../data/tasks.json')
 
 exports.get = async (id) => {
@@ -7,14 +10,9 @@ exports.get = async (id) => {
     return tasks
 }
 
-exports.post = async (data) => {
-
-    const newData = {
-        ...data,
-        id: tasks[tasks.length - 1].id + 1
-    }
-    tasks.push(newData)
-    return newData
+exports.post = (data) => {
+    const newData = { ...data }
+    return Task.create(newData)
 }
 
 exports.put = async (data, id) => {
