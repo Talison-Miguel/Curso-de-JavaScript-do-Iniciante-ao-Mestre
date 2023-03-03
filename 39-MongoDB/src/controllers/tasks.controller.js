@@ -8,7 +8,6 @@ exports.get = async (req, res) => {
     } catch (e) {
         res.status(500).send({ message: "erros 500", err: e })
     }
-
 }
 
 exports.post = async (req, res) => {
@@ -26,7 +25,6 @@ exports.post = async (req, res) => {
         userId
     }
 
-    // tasks.push(newTask)
     try {
         const data = await repository.post(newTask)
         console.log(data)
@@ -34,13 +32,11 @@ exports.post = async (req, res) => {
     } catch (e) {
         res.status(500).send({ message: "erros 500", err: e })
     }
-
 }
 
 exports.getById = async (req, res) => {
-    // res.send(tasks.find(task => task.id === parseInt(req.params.id)))
     try {
-        const data = await repository.get(parseInt(req.params.id))
+        const data = await repository.get(req.params.id)
         if (data) {
             res.status(200).send(data)
         } else {
@@ -62,17 +58,13 @@ exports.put = async (req, res) => {
         completed,
         createdAt,
         updatedAt,
-        id: parseInt(req.params.id),
         userId
     }
-
     const values = Object.values(newTask)
 
-    console.log(values)
     if (values.some(v => v === undefined)) {
         return res.status(400).send({ message: "erro 400", err: "Requisição não formatada corretamente" })
     }
-
 
     try {
         const data = await repository.put(newTask, req.params.id)
@@ -84,8 +76,8 @@ exports.put = async (req, res) => {
 
     } catch (e) {
         res.status(500).send({ message: "erros 500", err: e })
+        console.log(e)
     }
-
 }
 
 exports.patch = async (req, res) => {
@@ -102,7 +94,6 @@ exports.patch = async (req, res) => {
     } catch (e) {
         res.status(500).send({ message: "erros 500", err: e })
     }
-
 }
 
 exports.delete = async (req, res) => {
@@ -117,5 +108,4 @@ exports.delete = async (req, res) => {
     } catch (e) {
         res.status(500).send({ message: "erros 500", err: e })
     }
-    res.send(deletedTask)
 }

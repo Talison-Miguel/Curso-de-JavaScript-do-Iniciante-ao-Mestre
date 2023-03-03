@@ -1,11 +1,12 @@
-const mongoonse = require("mongoose")
+const mongoose = require('mongoose')
 
-const taskScheme = new mongoonse.Schema({
-    title: { type: String, require: true, trim: true, maxlength: 150 },
+const taskScheme = new mongoose.Schema({
+    title: { type: String, required: true, trim: true, maxlength: 150 },
     completed: { type: Boolean, default: false },
-    completedAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, require: false },
-    userId: { type: String, require: true, trim: true }
+    // completedAt: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, required: false },
+    userId: { type: String, required: true, trim: true }
 })
 
-module.exports = mongoonse.model("Task", taskScheme)
+module.exports = mongoose.model("Task", taskScheme)

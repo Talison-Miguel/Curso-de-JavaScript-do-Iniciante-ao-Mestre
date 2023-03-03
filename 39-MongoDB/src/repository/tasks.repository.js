@@ -3,11 +3,11 @@ const Task = require("./../models/task.model")
 
 const tasks = require('./../../data/tasks.json')
 
-exports.get = async (id) => {
-    if (!isNaN(id)) {
-        return tasks.find(task => task.id === parseInt(id))
+exports.get = (id) => {
+    if (id) {
+        return Task.findById(id)
     }
-    return tasks
+    return Task.find({})
 }
 
 exports.post = (data) => {
@@ -15,24 +15,12 @@ exports.post = (data) => {
     return Task.create(newData)
 }
 
-exports.put = async (data, id) => {
-    const taskIndex = tasks.findIndex(task => task.id === parseInt(id))
-    if (taskIndex < 0) {
-        return null
-    }
-    tasks.splice(taskIndex, 1, data)
-    return data
+exports.put = (data, id) => {
+    return Task.findOneAndUpdate({ _id: id }, data, { new: true })
 }
 
-exports.patch = async (data, id) => {
+exports.patch = (data, id) => {
     const { title, completed, userId } = data
-
-    const taskById = tasks.find(task => task.id === parseInt(id))
-
-    const taskIndex = tasks.findIndex(task => task.id === parseInt(id))
-    if (taskIndex < 0) {
-        return null
-    }
 
     const updatedAt = Date.now()
 
@@ -42,21 +30,15 @@ exports.patch = async (data, id) => {
         if (typeof taskUpdated[prop] === "undefined") delete taskUpdated[prop]
     }
 
-    const newTask = { ...taskById, ...taskUpdated }
-
-    tasks.splice(taskIndex, 1, newTask)
-
-    return newTask
-
+    return Task.findOneAndUpdate({ _id: id }, taskUpdated, {  })
 }
 
-exports.delete = async (id) => {
-    const taskIndex = tasks.findIndex(task => task.id === parseInt(id))
-    if (taskIndex < 0) {
-        return null
-    }
-
-    const deletedTask = tasks.splice(taskIndex, 1)
-
-    return deletedTask
+exports.delete = (id) => {
+    // const taskIndex = tasks.findIndex(task => task.id === parseInt(id))
+    // if (taskIndex < 0) {
+    //     return null
+    // }
+    // const deletedTask = tasks.splice(taskIndex, 1)
+    // return deletedTask
+    return Task.findOneAndRemove({ _id: id })
 }
