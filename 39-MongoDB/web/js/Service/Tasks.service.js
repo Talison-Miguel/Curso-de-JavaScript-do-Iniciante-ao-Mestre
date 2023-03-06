@@ -1,6 +1,6 @@
 import { createFetch } from './../createFetch.js'
 import { Task } from './../Model/Task.model.js'
-import { urlUsers, urlTasks } from './../config.js'
+import { urlTasks } from './../config.js'
 
 export default class TasksService {
     constructor() {
@@ -8,26 +8,24 @@ export default class TasksService {
     }
 
     add(task, cb, error, userId) {
-        createFetch("POST", `${urlUsers}/${userId}/tasks`, JSON.stringify(task))
+        createFetch("POST", `${urlTasks}`, JSON.stringify(task))
             .then(() => this.getTasks(userId))
             .then(() => cb())
             .catch(err => error(err))
-
     }
 
     async getTasks(userId, sucess, error) {
 
-
         const fn = (arrTasks) => {
             this.tasks = arrTasks.map(task => {
-                const { title, completed, createdAt, updatedAt, id } = task
-                return new Task(title, completed, createdAt, updatedAt, id)
+                const { title, completed, createdAt, updatedAt, _id } = task
+                return new Task(title, completed, createdAt, updatedAt, _id)
             })
 
             if (typeof sucess === "function") sucess(this.tasks)
             return this.tasks
         }
-        return createFetch("GET", `${urlUsers}/${userId}/tasks`)
+        return createFetch("GET", `${urlTasks}`)
             .then(response => {
                 return fn(response)
             })
@@ -36,7 +34,6 @@ export default class TasksService {
                     return error(erro.message)
                 }
                 throw Error(erro.message)
-
             })
     }
 
@@ -49,13 +46,26 @@ export default class TasksService {
 
     update(task, cb, error, userId) {
         task.updatedAt = Date.now()
-        createFetch("PATCH", `${urlTasks}/${task.id}`, JSON.stringify(task))
+        createFetch("PATCH", `${urlTasks}/${task._id}`, JSON.stringify(task))
             .then(() => this.getTasks(userId))
             .then(() => cb())
             .catch(err => error(err.message))
     }
 
     getById(id) {
-        return this.tasks.find(task => parseInt(task.id) === id)
+        const fn = response => {
+            const { title, completed, createdAt, updatedAt, _id } = response
+            const _task = new Task(title, completed, createdAt, updatedAt, _id)
+            return _task
+        }
+
+        return createFetch("GET", `${urlTasks}/${id}`)
+            .then(response => fn(response))
+            .catch(erro => {
+                if (typeof error === "function") {
+                    return error(erro.message)
+                }
+                throw Error(erro.message)
+            })
     }
 }
