@@ -72,11 +72,11 @@ function mascararTelefone(numero) {
     let hifemPosicao = numero.indexOf('-')
     let numInicio = numero.slice(0, hifemPosicao)
     let numFinal = numero.slice(hifemPosicao + 1)
-
     let doisUltimosNumeros = numFinal.slice(-2)
     return `${numInicio[0].padEnd(numInicio.length, "*")}-${doisUltimosNumeros.padStart(numFinal.length, "*")}` 
 }
 
+console.log('Tel:')
 console.log(mascararTelefone(telefone1))
 console.log(mascararTelefone(telefone2))
 
