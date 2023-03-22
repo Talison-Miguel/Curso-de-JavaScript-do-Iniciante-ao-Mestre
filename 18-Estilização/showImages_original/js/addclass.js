@@ -13,6 +13,7 @@ function isElementIntroView(element) {
 
 function addClassOnScroll() {
     //se ja tiver scrolado tudo, vai remover a funçao pra nao ficar execultando
+    console.log(elements)
     if(elements.length === 0) {
         window.removeEventListener('scroll', addClassOnScroll)
         console.log('evento removido com sucesso')

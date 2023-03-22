@@ -12,17 +12,17 @@ function getNewPosition(c) {
 }
 
 function positionImage() {
-    dataParalaxContainer.forEach(c => {
-        let originalPositionY = getComputedStyle(c).backgroundPositionY
-        let originalPositionX = getComputedStyle(c).backgroundPositionX
+    dataParalaxContainer.forEach(container => {
+        let originalPositionY = getComputedStyle(container).backgroundPositionY
+        let originalPositionX = getComputedStyle(container).backgroundPositionX
 
-        // console.log(originalPositionY)
+        // console.log(originalPositionY)   
         // console.log(originalPositionX)
 
-        if(isGettingOut(c)) {
-            c.style.backgroundPosition = ` ${originalPositionX} ${getNewPosition(c)}px `
+        if(isGettingOut(container)) {
+            container.style.backgroundPosition = ` ${originalPositionX} ${getNewPosition(container)}px `
         }else {
-            c.style.backgroundPosition = ` ${originalPositionX} 0px `
+            container.style.backgroundPosition = ` ${originalPositionX} 0px `
         }
     })
 }
