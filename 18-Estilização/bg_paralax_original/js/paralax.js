@@ -1,5 +1,6 @@
 const dataParalaxContainer = [...document.querySelectorAll('[data-paralax]')]
 
+
 function isGettingOut(container) {
     return container.getBoundingClientRect().top <= 0
 }
@@ -15,8 +16,8 @@ function positionImage() {
         let originalPositionY = getComputedStyle(c).backgroundPositionY
         let originalPositionX = getComputedStyle(c).backgroundPositionX
 
-        console.log(originalPositionY)
-        console.log(originalPositionX)
+        // console.log(originalPositionY)
+        // console.log(originalPositionX)
 
         if(isGettingOut(c)) {
             c.style.backgroundPosition = ` ${originalPositionX} ${getNewPosition(c)}px `
