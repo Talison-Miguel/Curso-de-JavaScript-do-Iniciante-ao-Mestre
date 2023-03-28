@@ -58,7 +58,7 @@ AnimalC.prototype.tipo = 'desconhecido'
 
 let animal = new AnimalC('anfibio')
 let sapo = new AnimalC()
-let mingal = new GatoC('mingau')
+let mingal = new GatoC('mingauu')
 
 // console.log(animal)
 // console.log(gato)
