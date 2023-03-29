@@ -6,7 +6,7 @@ String.prototype.replaceString = function(stringParaSubstituir, substituicao) {
     const array = texto.split('')
     console.log(array)
 
-    // console.log(this.texto)
+    // console.log(this.textosss)
     let string = []
     array.map((letra) => {
         if(letra !== stringParaSubstituir) {
