@@ -6,7 +6,7 @@ myObj.prop1 = 'prop1'
 
 const arr = []
 
-//se passa a refencia, e oque vai voltar, tipo qualquer coisa mesmo
+//se passa a refencia, e oque vai voltar, tipo qualquer coisa mesmosss
 myMap.set(arr, myObj)
 
 console.log(myMap.get(arr))
