@@ -63,9 +63,16 @@ Object.defineProperties(obj, {
     }
 })
 
+console.log(obj)
+
+console.log('------keys-------')
 // retorna um array de propriedades enumeraveis de um determinado objeto
 console.log(Object.keys(obj))
+
+console.log('------values-------')
 // retorna um array com os valores
 console.log(Object.values(obj))
+
+console.log('------entries-------')
 // retorna um array bidimensional, um array dentro de uma array
 console.log(Object.entries(obj))
