@@ -8,7 +8,7 @@ const path = require('path')
 // console.log(files)
 
 
-console.log("_______arquivo lido_______")
+console.log("_________arquivo lido_________")
 // fs.readdir __ le toda pasta
 fs.readFile('./files/README.MD', 'UTF-8', (err, content) => {
     if(err) {
