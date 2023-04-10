@@ -59,8 +59,8 @@ exports.put = async (request, response) => {
     const values = Object.values(newTask)
     if(values.some(valor => valor === undefined)) {
         return response.status(400).send({ 
-            message: "error 400", 
-            err: "Error 400 requisição não formatada corretamente" 
+            message: "error 400.", 
+            err: "Error 400 requisição não formatada corretamente." 
         })
     }
 
