@@ -1,6 +1,6 @@
 const obj = {
-    prop1:  'prop 1',
-    prop2:  'prop 2',
+    prop1:  'prop 01',
+    prop2:  'prop 02',
 }
 
 const objFreeze = {...obj}
