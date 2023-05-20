@@ -14,7 +14,7 @@ class Cachorroo {
         this.idade = idade;
     }
     mostrarDetalhes() {
-        console.log('Detalhe do cachorro!');
+        console.log('Detalhe do cachorro!!!!');
         console.log(this.nome);
         console.log(this.idade ? this.idade + 1 : '');
         console.log(this.categoria);
