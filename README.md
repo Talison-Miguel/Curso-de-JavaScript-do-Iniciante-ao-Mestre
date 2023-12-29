@@ -72,8 +72,9 @@ Este é um repositório contendo todo conteúdo que fiz do curso, vários projet
 
 Para copiar o projeto, utilize os comandos:
 
-
-  ❯ git clone https://github.com/Talison-Miguel/Curso-de-JavaScript-do-Iniciante-ao-Mestre.git
+  ```bash
+  ❯ git clone git clone https://github.com/Talison-Miguel/Curso-de-JavaScript-do-Iniciante-ao-Mestre.git
+```
 
 
 ---
