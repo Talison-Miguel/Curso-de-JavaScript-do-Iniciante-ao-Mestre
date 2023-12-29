@@ -73,7 +73,7 @@ Este é um repositório contendo todo conteúdo que fiz do curso, vários projet
 Para copiar o projeto, utilize os comandos:
 
 ```bash
-  ❯ git clone https://github.com/Talison-Miguel/Curso-de-JavaScript-Udemy.git
+  ❯ git clone Curso-de-JavaScript-do-Iniciante-ao-Mestre
 ```
 
 ---
